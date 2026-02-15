@@ -1,0 +1,1591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cell Biology Study Guide — Basic Level</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Source+Sans+3:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #FDF8F0;
+  --bg-alt: #F7F0E4;
+  --bg-card: #FFFFFF;
+  --text: #3D3229;
+  --text-light: #7A6E62;
+  --text-muted: #A89C8E;
+  --accent: #C4713B;
+  --accent-light: #E8A06A;
+  --accent-bg: #FEF3E8;
+  --green: #3A7D5C;
+  --green-light: #E6F4ED;
+  --green-bg: #F0F9F4;
+  --yellow: #B8860B;
+  --yellow-light: #FFF8E1;
+  --yellow-bg: #FFFDF5;
+  --amber: #D4802A;
+  --amber-bg: #FFF4E6;
+  --border: #E8DFD3;
+  --border-light: #F0EAE0;
+  --shadow: 0 2px 12px rgba(61,50,41,0.06);
+  --shadow-hover: 0 4px 20px rgba(61,50,41,0.10);
+  --radius: 10px;
+  --mono: 'JetBrains Mono', monospace;
+  --serif: 'Playfair Display', Georgia, serif;
+  --sans: 'Source Sans 3', 'Segoe UI', sans-serif;
+  --red: #C0392B;
+  --red-bg: #FDEDEC;
+  --blue: #2E86AB;
+  --blue-bg: #EBF5FB;
+  --purple: #7D5BA6;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 17px;
+  line-height: 1.72;
+  font-weight: 400;
+}
+
+/* ---- HERO ---- */
+.hero {
+  background: linear-gradient(135deg, #F7F0E4 0%, #FEF3E8 50%, #F0F9F4 100%);
+  border-bottom: 2px solid var(--border);
+  padding: 60px 24px 50px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 300px; height: 300px;
+  background: radial-gradient(circle, rgba(196,113,59,0.08) 0%, transparent 70%);
+  border-radius: 50%;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -40px; left: -40px;
+  width: 200px; height: 200px;
+  background: radial-gradient(circle, rgba(58,125,92,0.06) 0%, transparent 70%);
+  border-radius: 50%;
+}
+.hero .badge {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  background: var(--green);
+  color: #fff;
+  padding: 5px 18px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+}
+.hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 10px;
+  letter-spacing: -0.5px;
+}
+.hero p {
+  font-size: 1.1rem;
+  color: var(--text-light);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* ---- LAYOUT ---- */
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ---- TABLE OF CONTENTS ---- */
+.toc {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 32px 36px;
+  margin: 40px auto;
+  box-shadow: var(--shadow);
+}
+.toc h2 {
+  font-family: var(--serif);
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 18px;
+  color: var(--accent);
+}
+.toc-list {
+  list-style: none;
+  columns: 1;
+}
+@media (min-width: 600px) {
+  .toc-list { columns: 2; column-gap: 32px; }
+}
+.toc-list li {
+  break-inside: avoid;
+  margin-bottom: 8px;
+}
+.toc-list a {
+  text-decoration: none;
+  color: var(--text);
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 5px 0;
+  transition: color 0.2s;
+}
+.toc-list a:hover { color: var(--accent); }
+.toc-list .sec-num {
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--accent);
+  background: var(--accent-bg);
+  padding: 2px 8px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+/* ---- NAV TABS ---- */
+.nav-tabs {
+  display: flex;
+  gap: 6px;
+  margin: 30px auto 0;
+  padding: 6px;
+  background: var(--bg-alt);
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.nav-tab {
+  font-family: var(--sans);
+  font-size: 0.92rem;
+  font-weight: 600;
+  padding: 10px 22px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background: transparent;
+  color: var(--text-light);
+  transition: all 0.25s;
+}
+.nav-tab:hover { background: rgba(255,255,255,0.6); color: var(--text); }
+.nav-tab.active {
+  background: var(--bg-card);
+  color: var(--accent);
+  box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+}
+
+/* ---- TAB PANELS ---- */
+.tab-panel { display: none; margin-top: 30px; }
+.tab-panel.active { display: block; }
+
+/* ---- SECTIONS ---- */
+.section {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 36px;
+  margin-bottom: 28px;
+  box-shadow: var(--shadow);
+  transition: box-shadow 0.3s;
+}
+.section:hover { box-shadow: var(--shadow-hover); }
+.section-header {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+.section-num {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--accent);
+  background: var(--accent-bg);
+  padding: 3px 10px;
+  border-radius: 5px;
+  flex-shrink: 0;
+}
+.section h2 {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text);
+}
+.section h3 {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--text);
+  margin: 24px 0 10px;
+}
+.section p {
+  margin-bottom: 14px;
+}
+
+/* ---- CALLOUT BOXES ---- */
+.callout {
+  border-radius: 8px;
+  padding: 18px 22px;
+  margin: 18px 0;
+  border-left: 4px solid;
+  font-size: 0.97rem;
+}
+.callout-title {
+  font-weight: 700;
+  font-size: 0.88rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  font-family: var(--sans);
+}
+.callout.example {
+  background: var(--amber-bg);
+  border-color: var(--amber);
+}
+.callout.example .callout-title { color: var(--amber); }
+.callout.key {
+  background: var(--green-bg);
+  border-color: var(--green);
+}
+.callout.key .callout-title { color: var(--green); }
+.callout.warning {
+  background: var(--yellow-bg);
+  border-color: var(--yellow);
+}
+.callout.warning .callout-title { color: var(--yellow); }
+
+/* ---- VOCAB TABLE ---- */
+.vocab-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 18px 0;
+  font-size: 0.95rem;
+}
+.vocab-table th {
+  text-align: left;
+  font-family: var(--serif);
+  font-weight: 600;
+  padding: 10px 14px;
+  border-bottom: 2px solid var(--border);
+  color: var(--accent);
+  font-size: 0.92rem;
+}
+.vocab-table td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border-light);
+  vertical-align: top;
+}
+.vocab-table tr:last-child td { border-bottom: none; }
+.vocab-table .term {
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+code {
+  font-family: var(--mono);
+  font-size: 0.9em;
+  background: var(--bg-alt);
+  padding: 2px 7px;
+  border-radius: 4px;
+  color: var(--accent);
+}
+
+/* ---- QUIZ ---- */
+.quiz-progress {
+  background: var(--bg-alt);
+  border-radius: 20px;
+  height: 8px;
+  margin-bottom: 24px;
+  overflow: hidden;
+}
+.quiz-progress-bar {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 20px;
+  transition: width 0.4s ease;
+  width: 0%;
+}
+.quiz-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 30px;
+  margin-bottom: 20px;
+  box-shadow: var(--shadow);
+}
+.quiz-card .q-num {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--accent);
+  background: var(--accent-bg);
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin-bottom: 12px;
+  display: inline-block;
+}
+.quiz-card .q-text {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 18px;
+  line-height: 1.5;
+}
+.quiz-options { display: flex; flex-direction: column; gap: 8px; }
+.quiz-opt {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 16px;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: var(--bg-card);
+}
+.quiz-opt:hover { border-color: var(--accent-light); background: var(--accent-bg); }
+.quiz-opt.selected { border-color: var(--accent); background: var(--accent-bg); }
+.quiz-opt.correct { border-color: var(--green); background: var(--green-bg); }
+.quiz-opt.wrong { border-color: var(--red); background: var(--red-bg); }
+.quiz-opt.disabled { pointer-events: none; opacity: 0.85; }
+.quiz-opt .opt-letter {
+  font-family: var(--mono);
+  font-weight: 600;
+  font-size: 0.85rem;
+  min-width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--bg-alt);
+  color: var(--text-light);
+  flex-shrink: 0;
+}
+.quiz-opt.correct .opt-letter { background: var(--green); color: #fff; }
+.quiz-opt.wrong .opt-letter { background: var(--red); color: #fff; }
+.quiz-feedback {
+  margin-top: 14px;
+  padding: 14px 18px;
+  border-radius: 8px;
+  font-size: 0.94rem;
+  display: none;
+}
+.quiz-feedback.show { display: block; }
+.quiz-feedback.correct { background: var(--green-bg); border-left: 3px solid var(--green); }
+.quiz-feedback.incorrect { background: var(--red-bg); border-left: 3px solid var(--red); }
+
+.quiz-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 30px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.quiz-btn {
+  font-family: var(--sans);
+  font-weight: 600;
+  padding: 10px 24px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: all 0.2s;
+}
+.quiz-btn.primary { background: var(--accent); color: #fff; }
+.quiz-btn.primary:hover { background: #A85D2F; }
+.quiz-btn.secondary { background: var(--bg-alt); color: var(--text); border: 1px solid var(--border); }
+.quiz-btn.secondary:hover { background: var(--border-light); }
+.quiz-score-card {
+  text-align: center;
+  padding: 40px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+.quiz-score-card .score-num {
+  font-family: var(--serif);
+  font-size: 3rem;
+  font-weight: 800;
+  color: var(--accent);
+}
+.quiz-score-card .score-label {
+  font-size: 1rem;
+  color: var(--text-light);
+  margin-top: 4px;
+}
+
+/* ---- FLASHCARDS ---- */
+.fc-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+.fc-filter-btn {
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 7px 16px;
+  border: 1.5px solid var(--border);
+  border-radius: 20px;
+  background: var(--bg-card);
+  cursor: pointer;
+  color: var(--text-light);
+  transition: all 0.2s;
+}
+.fc-filter-btn:hover { border-color: var(--accent-light); }
+.fc-filter-btn.active {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+.fc-container {
+  perspective: 1000px;
+  min-height: 280px;
+  margin-bottom: 20px;
+}
+.fc-card {
+  width: 100%;
+  min-height: 260px;
+  position: relative;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  transition: transform 0.5s ease;
+}
+.fc-card.flipped { transform: rotateY(180deg); }
+.fc-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  text-align: center;
+}
+.fc-front {
+  background: var(--bg-card);
+}
+.fc-back {
+  background: var(--green-bg);
+  transform: rotateY(180deg);
+}
+.fc-label {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+}
+.fc-front .fc-text {
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text);
+}
+.fc-back .fc-text {
+  font-size: 1.05rem;
+  color: var(--text);
+  line-height: 1.6;
+}
+.fc-category {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--accent);
+  background: var(--accent-bg);
+  padding: 2px 10px;
+  border-radius: 4px;
+  margin-top: 16px;
+}
+.fc-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+.fc-nav-btn {
+  font-family: var(--sans);
+  font-weight: 600;
+  padding: 10px 20px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg-card);
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+.fc-nav-btn:hover { background: var(--accent-bg); border-color: var(--accent-light); }
+.fc-counter {
+  font-family: var(--mono);
+  font-size: 0.9rem;
+  color: var(--text-light);
+}
+
+/* ---- SHORT ANSWER ---- */
+.sa-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow);
+}
+.sa-card .q-num {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--green);
+  background: var(--green-bg);
+  padding: 2px 8px;
+  border-radius: 4px;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+.sa-card .q-text {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+.sa-textarea {
+  width: 100%;
+  min-height: 100px;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  padding: 14px;
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  resize: vertical;
+  background: var(--bg);
+  color: var(--text);
+  transition: border-color 0.2s;
+  line-height: 1.6;
+}
+.sa-textarea:focus { outline: none; border-color: var(--accent); }
+.sa-grade-btn {
+  margin-top: 10px;
+  font-family: var(--sans);
+  font-weight: 600;
+  padding: 9px 20px;
+  background: var(--green);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.2s;
+}
+.sa-grade-btn:hover { background: #2E6B4D; }
+.sa-result {
+  margin-top: 16px;
+  display: none;
+}
+.sa-result.show { display: block; }
+.sa-progress-bar {
+  height: 10px;
+  background: var(--bg-alt);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+.sa-progress-fill {
+  height: 100%;
+  border-radius: 10px;
+  transition: width 0.5s ease;
+}
+.sa-score-label {
+  font-family: var(--mono);
+  font-size: 0.88rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.sa-concepts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+.sa-tag {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  padding: 3px 10px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+.sa-tag.hit { background: var(--green-bg); color: var(--green); border: 1px solid var(--green); }
+.sa-tag.miss { background: var(--bg-alt); color: var(--text-muted); border: 1px solid var(--border); }
+.sa-model-toggle {
+  font-family: var(--sans);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--accent);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 0;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.sa-model-answer {
+  margin-top: 10px;
+  padding: 16px;
+  background: var(--blue-bg);
+  border-radius: 8px;
+  font-size: 0.93rem;
+  line-height: 1.65;
+  display: none;
+  border-left: 3px solid var(--blue);
+}
+.sa-model-answer.show { display: block; }
+
+/* ---- SCROLL TOP ---- */
+.scroll-top {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 44px;
+  height: 44px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.2rem;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.15);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s;
+  z-index: 100;
+}
+.scroll-top.show { opacity: 1; visibility: visible; }
+.scroll-top:hover { background: #A85D2F; transform: translateY(-2px); }
+
+/* ---- RESPONSIVE ---- */
+@media (max-width: 640px) {
+  .section { padding: 22px; }
+  .toc { padding: 22px; }
+  .quiz-card { padding: 20px; }
+  .sa-card { padding: 20px; }
+  .fc-face { padding: 22px; }
+  .hero { padding: 40px 18px 36px; }
+}
+
+/* ---- ANIMATIONS ---- */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.section, .quiz-card, .sa-card, .toc {
+  animation: fadeUp 0.4s ease both;
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="badge">★ Basic Level</div>
+  <h1>Cell Biology</h1>
+  <p>A friendly, ground-up introduction to the building blocks of life. Start here if you're new to biology or want a clear refresher.</p>
+</div>
+
+<div class="container">
+
+<!-- NAV TABS -->
+<div class="nav-tabs">
+  <button class="nav-tab active" onclick="showTab('study')">📖 Study Guide</button>
+  <button class="nav-tab" onclick="showTab('quiz')">✏️ Quiz</button>
+  <button class="nav-tab" onclick="showTab('flashcards')">🃏 Flashcards</button>
+  <button class="nav-tab" onclick="showTab('shortanswer')">📝 Short Answer</button>
+</div>
+
+<!-- ============ STUDY GUIDE TAB ============ -->
+<div id="tab-study" class="tab-panel active">
+
+<!-- TABLE OF CONTENTS -->
+<div class="toc">
+  <h2>Table of Contents</h2>
+  <ol class="toc-list">
+    <li><a href="#s1"><span class="sec-num">01</span> What Is a Cell?</a></li>
+    <li><a href="#s2"><span class="sec-num">02</span> Prokaryotes vs. Eukaryotes</a></li>
+    <li><a href="#s3"><span class="sec-num">03</span> The Cell Membrane</a></li>
+    <li><a href="#s4"><span class="sec-num">04</span> The Nucleus</a></li>
+    <li><a href="#s5"><span class="sec-num">05</span> Organelles: The Cell's Machinery</a></li>
+    <li><a href="#s6"><span class="sec-num">06</span> Energy and the Mitochondria</a></li>
+    <li><a href="#s7"><span class="sec-num">07</span> Plant Cells vs. Animal Cells</a></li>
+    <li><a href="#s8"><span class="sec-num">08</span> Cell Division: Making New Cells</a></li>
+    <li><a href="#s9"><span class="sec-num">09</span> How Molecules Move In and Out</a></li>
+    <li><a href="#s10"><span class="sec-num">10</span> Putting It All Together</a></li>
+  </ol>
+</div>
+
+<!-- SECTION 1 -->
+<div class="section" id="s1">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <h2>What Is a Cell?</h2>
+  </div>
+  <p>Every living thing, from the bacteria in your yogurt to the blue whale, is made of cells. A cell is the smallest unit that can carry out all the activities we associate with life: it can grow, respond to its environment, use energy, and reproduce. Think of a cell as a tiny, self-contained factory. It takes in raw materials, processes them, builds products, and disposes of waste, all within a space far too small to see with the naked eye.</p>
+  <p>This idea is captured in <strong>cell theory</strong>, one of the foundational principles of biology. Cell theory says three things: all living organisms are made of one or more cells, the cell is the basic unit of life, and new cells arise only from existing cells. There is no "spontaneous generation" of life from non-living matter; every cell you have right now descended, through an unbroken chain of divisions, from older cells.</p>
+
+  <div class="callout example">
+    <div class="callout-title">Example</div>
+    Your body contains roughly 37 trillion cells. A single drop of blood carries about 5 million red blood cells. Meanwhile, some organisms, like amoebas, are just one cell that does everything on its own.
+  </div>
+
+  <div class="callout key">
+    <div class="callout-title">Key Takeaway</div>
+    The cell is the smallest thing that is alive. Everything living is made of cells, and every cell comes from a pre-existing cell.
+  </div>
+
+  <div class="callout warning">
+    <div class="callout-title">Common Mistake</div>
+    Viruses are not cells. They lack the machinery to reproduce on their own and must hijack a host cell. On an exam, do not call viruses "living cells."
+  </div>
+
+  <table class="vocab-table">
+    <thead><tr><th>Term</th><th>Definition</th></tr></thead>
+    <tbody>
+      <tr><td class="term">Cell</td><td>The basic structural and functional unit of all living organisms.</td></tr>
+      <tr><td class="term">Cell Theory</td><td>The principle that all living things are made of cells, cells are the basic unit of life, and all cells come from pre-existing cells.</td></tr>
+      <tr><td class="term">Organism</td><td>Any individual living thing, whether made of one cell or trillions.</td></tr>
+      <tr><td class="term">Unicellular</td><td>An organism made of only one cell (e.g., bacteria, yeast).</td></tr>
+      <tr><td class="term">Multicellular</td><td>An organism made of many cells working together (e.g., humans, trees).</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- SECTION 2 -->
+<div class="section" id="s2">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <h2>Prokaryotes vs. Eukaryotes</h2>
+  </div>
+  <p>Not all cells are built the same way. The most fundamental divide in cell biology is between cells that keep their DNA loose inside the cell and cells that package their DNA inside a special compartment called a <strong>nucleus</strong>. Cells without a nucleus are called <strong>prokaryotes</strong> (the word means "before the nucleus"), and cells with a nucleus are called <strong>eukaryotes</strong> ("true nucleus"). Bacteria and archaea are prokaryotes. Animals, plants, fungi, and protists are all eukaryotes.</p>
+  <p>Prokaryotic cells are generally much smaller and simpler. They still have a cell membrane and ribosomes (tiny machines that build proteins), but they lack the complex internal compartments, called organelles, that eukaryotic cells have. Eukaryotic cells are larger and more elaborate, with distinct membrane-bound organelles that each perform specialized jobs, much like departments within a company.</p>
+
+  <div class="callout example">
+    <div class="callout-title">Example</div>
+    The bacterium <em>E. coli</em> in your gut is a prokaryote: small, no nucleus, relatively simple. A white blood cell defending your body is a eukaryote: larger, nucleus-containing, packed with specialized organelles.
+  </div>
+
+  <div class="callout key">
+    <div class="callout-title">Key Takeaway</div>
+    The defining difference is the nucleus. Prokaryotes = no nucleus. Eukaryotes = nucleus. This is the biggest structural division in the world of cells.
+  </div>
+
+  <div class="callout warning">
+    <div class="callout-title">Common Mistake</div>
+    "Prokaryotes have no DNA" is wrong. They absolutely have DNA; it just floats freely in the cytoplasm rather than being enclosed in a nucleus.
+  </div>
+
+  <table class="vocab-table">
+    <thead><tr><th>Term</th><th>Definition</th></tr></thead>
+    <tbody>
+      <tr><td class="term">Prokaryote</td><td>A cell that lacks a membrane-bound nucleus. Examples: bacteria, archaea.</td></tr>
+      <tr><td class="term">Eukaryote</td><td>A cell that contains a membrane-bound nucleus and organelles. Examples: animal, plant, fungal cells.</td></tr>
+      <tr><td class="term">Nucleus</td><td>A membrane-enclosed compartment that houses the cell's DNA.</td></tr>
+      <tr><td class="term">Organelle</td><td>A specialized structure inside a cell that performs a specific function (literally "little organ").</td></tr>
+      <tr><td class="term">Ribosome</td><td>A tiny structure (not membrane-bound) that builds proteins by reading genetic instructions.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- SECTION 3 -->
+<div class="section" id="s3">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <h2>The Cell Membrane</h2>
+  </div>
+  <p>Every cell is wrapped in a thin, flexible boundary called the <strong>cell membrane</strong> (also known as the plasma membrane). Its job is to control what enters and exits the cell, acting as a selective gatekeeper. Without a membrane, a cell's contents would simply mix with the surrounding fluid and the cell would cease to exist as a distinct unit.</p>
+  <p>The membrane is built mainly from <strong>phospholipids</strong>, molecules that have a water-loving (hydrophilic) head and two water-fearing (hydrophobic) tails. In water, these molecules naturally arrange themselves into a double layer, the <strong>phospholipid bilayer</strong>, with the heads facing outward toward water and the tails tucked inward, away from water. Scattered throughout this bilayer are proteins that serve as channels, receptors, and identity markers, as well as cholesterol molecules that help keep the membrane fluid but stable.</p>
+  <p>Scientists often describe this arrangement with the <strong>fluid mosaic model</strong>: "fluid" because the phospholipids and proteins drift and move within the layer like boats on a lake, and "mosaic" because the variety of proteins and lipids creates a patchwork pattern.</p>
+
+  <div class="callout example">
+    <div class="callout-title">Example</div>
+    Imagine a soap bubble. The thin film of the bubble is a bit like a cell membrane: it forms a boundary, it is flexible, and it separates the inside from the outside. Now imagine that bubble has tiny doors and windows (proteins) built into it to let certain things in or out.
+  </div>
+
+  <div class="callout key">
+    <div class="callout-title">Key Takeaway</div>
+    The cell membrane is a phospholipid bilayer studded with proteins. It is selectively permeable, meaning it controls which substances pass through.
+  </div>
+
+  <div class="callout warning">
+    <div class="callout-title">Common Mistake</div>
+    Do not confuse the cell membrane with the cell wall. The membrane is a flexible lipid bilayer found in ALL cells. The cell wall is a rigid outer layer found only in plants, fungi, and bacteria, located outside the membrane.
+  </div>
+
+  <table class="vocab-table">
+    <thead><tr><th>Term</th><th>Definition</th></tr></thead>
+    <tbody>
+      <tr><td class="term">Cell Membrane</td><td>The thin, flexible barrier surrounding every cell; controls what enters and exits.</td></tr>
+      <tr><td class="term">Phospholipid</td><td>A lipid molecule with a hydrophilic head and two hydrophobic tails; the main building block of the membrane.</td></tr>
+      <tr><td class="term">Phospholipid Bilayer</td><td>The two-layer arrangement of phospholipids that forms the cell membrane.</td></tr>
+      <tr><td class="term">Selectively Permeable</td><td>Allowing some substances to pass through while blocking others.</td></tr>
+      <tr><td class="term">Fluid Mosaic Model</td><td>The accepted description of membrane structure: a fluid layer of lipids with a mosaic of embedded proteins.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- SECTION 4 -->
+<div class="section" id="s4">
+  <div class="section-header">
+    <span class="section-num">04</span>
+    <h2>The Nucleus</h2>
+  </div>
+  <p>If the cell is a factory, the nucleus is the front office where the master blueprints are stored. The <strong>nucleus</strong> houses nearly all of the cell's DNA, organized into structures called <strong>chromosomes</strong>. These chromosomes contain the genes, the specific instructions for building every protein the cell needs. The nucleus does not build the proteins itself; instead it sends out messenger copies of the instructions (messenger RNA) to the ribosomes in the cytoplasm, which do the actual construction.</p>
+  <p>Surrounding the nucleus is a double membrane called the <strong>nuclear envelope</strong>, which is punctuated by <strong>nuclear pores</strong>, tiny channels that allow molecules like mRNA and proteins to pass back and forth between the nucleus and the rest of the cell. Inside the nucleus, you can sometimes see a dense region called the <strong>nucleolus</strong>, which is where the cell builds ribosomal RNA, a key component of ribosomes.</p>
+
+  <div class="callout example">
+    <div class="callout-title">Example</div>
+    Think of the nucleus as a library's restricted archive. The books (DNA) never leave, but photocopies of specific pages (mRNA) are sent out through the checkout desk (nuclear pores) so the factory floor (ribosomes) can follow the instructions.
+  </div>
+
+  <div class="callout key">
+    <div class="callout-title">Key Takeaway</div>
+    The nucleus stores and protects the cell's DNA and controls gene expression by sending mRNA instructions to the cytoplasm.
+  </div>
+
+  <div class="callout warning">
+    <div class="callout-title">Common Mistake</div>
+    Not all eukaryotic cells have a nucleus at all times. Mature red blood cells in mammals lose their nucleus to make more room for hemoglobin. Do not assume nucleus = present in every human cell.
+  </div>
+
+  <table class="vocab-table">
+    <thead><tr><th>Term</th><th>Definition</th></tr></thead>
+    <tbody>
+      <tr><td class="term">Chromosome</td><td>A structure of tightly coiled DNA and proteins found in the nucleus.</td></tr>
+      <tr><td class="term">Gene</td><td>A segment of DNA that contains the instructions for building one protein (or RNA).</td></tr>
+      <tr><td class="term">Nuclear Envelope</td><td>The double membrane surrounding the nucleus.</td></tr>
+      <tr><td class="term">Nuclear Pore</td><td>An opening in the nuclear envelope that regulates transport in and out of the nucleus.</td></tr>
+      <tr><td class="term">Nucleolus</td><td>A dense region within the nucleus where ribosomal RNA is produced.</td></tr>
+      <tr><td class="term">mRNA</td><td>Messenger RNA; a copy of a gene's instructions that travels from the nucleus to the ribosome.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- SECTION 5 -->
+<div class="section" id="s5">
+  <div class="section-header">
+    <span class="section-num">05</span>
+    <h2>Organelles: The Cell's Machinery</h2>
+  </div>
+  <p>Eukaryotic cells contain a collection of membrane-bound organelles, each with a distinct role, floating in a jelly-like substance called the <strong>cytoplasm</strong>. Running through the cytoplasm is a network of internal membranes called the <strong>endomembrane system</strong>, which includes the endoplasmic reticulum and the Golgi apparatus and works like an assembly line.</p>
+
+  <h3>Endoplasmic Reticulum (ER)</h3>
+  <p>The ER is a sprawling network of membrane-enclosed channels connected to the nuclear envelope. It comes in two forms. <strong>Rough ER</strong> is studded with ribosomes on its surface, giving it a bumpy appearance; its job is to fold and process proteins destined for membranes or export out of the cell. <strong>Smooth ER</strong> lacks ribosomes and specializes in lipid synthesis, detoxification of drugs and poisons, and calcium storage.</p>
+
+  <h3>Golgi Apparatus</h3>
+  <p>After proteins are made on the rough ER, they travel in small transport bubbles (vesicles) to the <strong>Golgi apparatus</strong>, a stack of flattened membrane sacs that modifies, sorts, and packages proteins for their final destinations, whether that is another organelle, the cell surface, or secretion outside the cell. Think of the Golgi as the post office of the cell.</p>
+
+  <h3>Lysosomes</h3>
+  <p><strong>Lysosomes</strong> are membrane-bound sacs filled with digestive enzymes. They break down worn-out organelles, food particles, and invading bacteria. They keep the rest of the cell safe by containing these harsh enzymes inside their own membrane.</p>
+
+  <h3>Cytoskeleton</h3>
+  <p>The <strong>cytoskeleton</strong> is a network of protein fibers that gives the cell its shape, helps it move, and provides tracks for organelles to travel along. It includes microfilaments (thin, for movement), intermediate filaments (strong, for support), and microtubules (thick, for transport and cell division).</p>
+
+  <div class="callout example">
+    <div class="callout-title">Example</div>
+    Imagine the cell as an Amazon warehouse. The rough ER is the manufacturing area where items (proteins) are assembled. The Golgi is the packing and shipping department, adding labels and sorting parcels. Lysosomes are the recycling and waste disposal crews. The cytoskeleton is the conveyor belt system moving everything around.
+  </div>
+
+  <div class="callout key">
+    <div class="callout-title">Key Takeaway</div>
+    The rough ER makes proteins, the Golgi modifies and ships them, and lysosomes digest waste. These organelles work together as an interconnected system.
+  </div>
+
+  <div class="callout warning">
+    <div class="callout-title">Common Mistake</div>
+    Students often confuse the rough ER and the Golgi. The ER makes and folds; the Golgi modifies and sorts. Proteins go ER → Golgi → destination, not the other way around.
+  </div>
+
+  <table class="vocab-table">
+    <thead><tr><th>Term</th><th>Definition</th></tr></thead>
+    <tbody>
+      <tr><td class="term">Cytoplasm</td><td>The jelly-like material filling the cell between the membrane and the nucleus.</td></tr>
+      <tr><td class="term">Rough ER</td><td>Endoplasmic reticulum studded with ribosomes; synthesizes and folds proteins.</td></tr>
+      <tr><td class="term">Smooth ER</td><td>Endoplasmic reticulum without ribosomes; makes lipids and detoxifies chemicals.</td></tr>
+      <tr><td class="term">Golgi Apparatus</td><td>Stacked membrane sacs that modify, sort, and package proteins.</td></tr>
+      <tr><td class="term">Lysosome</td><td>Organelle containing digestive enzymes that breaks down waste and debris.</td></tr>
+      <tr><td class="term">Vesicle</td><td>A small membrane-bound sac that transports materials within the cell.</td></tr>
+      <tr><td class="term">Cytoskeleton</td><td>Network of protein fibers providing shape, support, and movement to the cell.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- SECTION 6 -->
+<div class="section" id="s6">
+  <div class="section-header">
+    <span class="section-num">06</span>
+    <h2>Energy and the Mitochondria</h2>
+  </div>
+  <p>Cells need energy to do everything: build molecules, move, divide, send signals. The main energy currency of the cell is a molecule called <strong>ATP</strong> (adenosine triphosphate). You can think of ATP as a rechargeable battery. When the cell needs energy, it breaks off one phosphate group from ATP, releasing energy and leaving behind ADP (adenosine diphosphate). The cell then "recharges" ADP back into ATP.</p>
+  <p>The organelle primarily responsible for manufacturing ATP in eukaryotic cells is the <strong>mitochondrion</strong> (plural: mitochondria). Mitochondria take in glucose-derived molecules and oxygen and, through a multi-step process called <strong>cellular respiration</strong>, produce large quantities of ATP. The simplified overall equation is: <code>C₆H₁₂O₆ + 6O₂ → 6CO₂ + 6H₂O + ATP</code>.</p>
+  <p>Mitochondria have their own double membrane: a smooth outer membrane and a highly folded inner membrane. The folds, called <strong>cristae</strong>, increase the surface area available for the chemical reactions that generate ATP. Interestingly, mitochondria contain their own small DNA molecule, which is evidence supporting the <strong>endosymbiotic theory</strong>, the idea that mitochondria were once free-living bacteria that were engulfed by an ancestral cell billions of years ago.</p>
+
+  <div class="callout example">
+    <div class="callout-title">Example</div>
+    Your muscle cells, which demand a lot of energy during exercise, are packed with thousands of mitochondria. A less active cell, like a skin cell, has far fewer. The number of mitochondria in a cell reflects its energy needs.
+  </div>
+
+  <div class="callout key">
+    <div class="callout-title">Key Takeaway</div>
+    Mitochondria are the powerhouses of the cell. They convert glucose and oxygen into ATP through cellular respiration.
+  </div>
+
+  <div class="callout warning">
+    <div class="callout-title">Common Mistake</div>
+    Cellular respiration is NOT the same as breathing (though breathing supplies the oxygen). Respiration happens inside cells at the mitochondria. Breathing is just the physical act of getting oxygen into your lungs and bloodstream.
+  </div>
+
+  <table class="vocab-table">
+    <thead><tr><th>Term</th><th>Definition</th></tr></thead>
+    <tbody>
+      <tr><td class="term">ATP</td><td>Adenosine triphosphate; the cell's primary energy carrier molecule.</td></tr>
+      <tr><td class="term">Mitochondrion</td><td>The organelle that produces most of the cell's ATP through cellular respiration.</td></tr>
+      <tr><td class="term">Cellular Respiration</td><td>The process of breaking down glucose with oxygen to produce ATP, CO₂, and water.</td></tr>
+      <tr><td class="term">Cristae</td><td>The folds of the inner mitochondrial membrane that increase surface area for ATP production.</td></tr>
+      <tr><td class="term">Endosymbiotic Theory</td><td>The hypothesis that mitochondria (and chloroplasts) originated as independent bacteria engulfed by an ancestral eukaryotic cell.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- SECTION 7 -->
+<div class="section" id="s7">
+  <div class="section-header">
+    <span class="section-num">07</span>
+    <h2>Plant Cells vs. Animal Cells</h2>
+  </div>
+  <p>Plant cells and animal cells are both eukaryotic, so they share most of the same organelles: nucleus, mitochondria, ER, Golgi, ribosomes, and cytoskeleton. However, plant cells have three major structures that animal cells lack, and understanding these differences is essential.</p>
+  <p>First, plant cells have a rigid <strong>cell wall</strong> made of cellulose that sits outside the cell membrane. This wall gives plants their structural support (it is why a tree can stand upright without a skeleton). Second, plant cells contain <strong>chloroplasts</strong>, the organelles that carry out <strong>photosynthesis</strong>, using sunlight to convert carbon dioxide and water into glucose and oxygen: <code>6CO₂ + 6H₂O + light → C₆H₁₂O₆ + 6O₂</code>. Like mitochondria, chloroplasts have their own DNA and double membrane, further evidence for the endosymbiotic theory. Third, plant cells typically have a large <strong>central vacuole</strong> that stores water, nutrients, and waste products and helps maintain the cell's shape by exerting pressure against the cell wall.</p>
+
+  <div class="callout example">
+    <div class="callout-title">Example</div>
+    When a houseplant wilts, it is because the central vacuoles in its cells have lost water. Without that water pressure pushing outward against the cell walls, the stems and leaves go limp. Watering the plant refills the vacuoles and restores the rigid, upright structure.
+  </div>
+
+  <div class="callout key">
+    <div class="callout-title">Key Takeaway</div>
+    Plant cells have a cell wall, chloroplasts, and a large central vacuole. Animal cells have none of these three. Both types have mitochondria.
+  </div>
+
+  <div class="callout warning">
+    <div class="callout-title">Common Mistake</div>
+    "Plant cells do photosynthesis, so they don't need mitochondria." Wrong! Plant cells DO have mitochondria and perform cellular respiration, especially at night when photosynthesis stops. They need both organelles.
+  </div>
+
+  <table class="vocab-table">
+    <thead><tr><th>Term</th><th>Definition</th></tr></thead>
+    <tbody>
+      <tr><td class="term">Cell Wall</td><td>A rigid outer layer (cellulose in plants) that provides structural support outside the membrane.</td></tr>
+      <tr><td class="term">Chloroplast</td><td>An organelle in plant (and algal) cells that converts sunlight into glucose through photosynthesis.</td></tr>
+      <tr><td class="term">Photosynthesis</td><td>The process of using light energy to make glucose from CO₂ and water.</td></tr>
+      <tr><td class="term">Central Vacuole</td><td>A large, water-filled organelle in plant cells that stores materials and helps maintain cell shape.</td></tr>
+      <tr><td class="term">Turgor Pressure</td><td>The pressure exerted by water inside the vacuole pushing against the cell wall, keeping the plant firm.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- SECTION 8 -->
+<div class="section" id="s8">
+  <div class="section-header">
+    <span class="section-num">08</span>
+    <h2>Cell Division: Making New Cells</h2>
+  </div>
+  <p>Growth, repair, and reproduction all depend on cells being able to copy themselves. The process by which a single cell divides into two genetically identical daughter cells is called <strong>mitosis</strong> (together with cytokinesis, the physical splitting of the cytoplasm). Before a cell divides, it must first duplicate all of its DNA so that each new cell receives a complete copy of the genetic instructions. This DNA duplication happens during a phase called <strong>S phase</strong>, which is part of the larger <strong>cell cycle</strong>.</p>
+  <p>The cell cycle has two broad stages: <strong>interphase</strong> (the cell grows, copies its DNA, and prepares to divide) and the <strong>mitotic phase</strong> (the cell actually divides). Interphase is the longest part of the cycle and includes G1 (growth), S (DNA synthesis), and G2 (preparation for mitosis). Mitosis itself has four sub-stages: prophase, metaphase, anaphase, and telophase, during which the copied chromosomes are carefully sorted and pulled to opposite ends of the cell before it splits in two.</p>
+
+  <div class="callout example">
+    <div class="callout-title">Example</div>
+    When you scrape your knee, your body heals the wound through mitosis. Skin cells at the edges of the cut rapidly divide, producing new cells to fill in the gap. Each new cell is genetically identical to the ones that were there before.
+  </div>
+
+  <div class="callout key">
+    <div class="callout-title">Key Takeaway</div>
+    Mitosis produces two genetically identical daughter cells and is used for growth and repair. DNA must be copied before the cell divides.
+  </div>
+
+  <div class="callout warning">
+    <div class="callout-title">Common Mistake</div>
+    Do not confuse mitosis with meiosis. Mitosis produces two identical cells (for growth/repair). Meiosis produces four genetically unique cells (for making sex cells/gametes). At the basic level, focus on mitosis.
+  </div>
+
+  <table class="vocab-table">
+    <thead><tr><th>Term</th><th>Definition</th></tr></thead>
+    <tbody>
+      <tr><td class="term">Cell Cycle</td><td>The sequence of growth, DNA replication, and division that a cell goes through.</td></tr>
+      <tr><td class="term">Interphase</td><td>The portion of the cell cycle where the cell grows and copies its DNA (G1, S, G2).</td></tr>
+      <tr><td class="term">Mitosis</td><td>The division of the nucleus resulting in two genetically identical nuclei.</td></tr>
+      <tr><td class="term">Cytokinesis</td><td>The physical division of the cytoplasm that follows mitosis, producing two separate cells.</td></tr>
+      <tr><td class="term">Daughter Cells</td><td>The two new cells produced by cell division; genetically identical to each other and to the parent.</td></tr>
+      <tr><td class="term">Chromosome</td><td>A structure of DNA and protein; must be duplicated before cell division.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- SECTION 9 -->
+<div class="section" id="s9">
+  <div class="section-header">
+    <span class="section-num">09</span>
+    <h2>How Molecules Move In and Out</h2>
+  </div>
+  <p>The cell membrane is selectively permeable, but how exactly do molecules get across it? There are two broad categories: <strong>passive transport</strong> (no energy required) and <strong>active transport</strong> (energy, usually ATP, required).</p>
+  <p><strong>Diffusion</strong> is the simplest form of passive transport. Molecules naturally move from an area of higher concentration to an area of lower concentration, spreading out until they are evenly distributed. Small, nonpolar molecules like oxygen and carbon dioxide can diffuse directly through the phospholipid bilayer. When water specifically moves across a selectively permeable membrane by diffusion, it is called <strong>osmosis</strong>. Larger or charged molecules may need help from membrane proteins, a process called <strong>facilitated diffusion</strong>, which is still passive because it follows the concentration gradient.</p>
+  <p>Sometimes the cell needs to move substances against the concentration gradient (from low to high concentration), which requires energy. This is <strong>active transport</strong>. An important example is the sodium-potassium pump, which uses ATP to pump sodium ions out of the cell and potassium ions in, maintaining the electrical balance the cell depends on.</p>
+
+  <div class="callout example">
+    <div class="callout-title">Example</div>
+    When you spray perfume in one corner of a room, you can eventually smell it across the room. That spreading is diffusion. Osmosis works the same way, but specifically for water moving through a membrane. If you put a raisin in water, it plumps up because water moves in by osmosis.
+  </div>
+
+  <div class="callout key">
+    <div class="callout-title">Key Takeaway</div>
+    Passive transport (diffusion, osmosis, facilitated diffusion) requires no energy and moves substances down their concentration gradient. Active transport uses ATP to move substances against the gradient.
+  </div>
+
+  <div class="callout warning">
+    <div class="callout-title">Common Mistake</div>
+    Facilitated diffusion is passive, NOT active, even though it uses a protein channel. The key question is: does it require energy (ATP)? If no, it is passive. The protein just provides a pathway; it does not supply energy.
+  </div>
+
+  <table class="vocab-table">
+    <thead><tr><th>Term</th><th>Definition</th></tr></thead>
+    <tbody>
+      <tr><td class="term">Diffusion</td><td>The movement of molecules from high to low concentration; no energy needed.</td></tr>
+      <tr><td class="term">Osmosis</td><td>The diffusion of water across a selectively permeable membrane.</td></tr>
+      <tr><td class="term">Facilitated Diffusion</td><td>Passive transport of molecules through membrane proteins, following the gradient.</td></tr>
+      <tr><td class="term">Active Transport</td><td>Movement of molecules against the concentration gradient, requiring ATP energy.</td></tr>
+      <tr><td class="term">Concentration Gradient</td><td>The difference in concentration of a substance between two areas.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- SECTION 10 -->
+<div class="section" id="s10">
+  <div class="section-header">
+    <span class="section-num">10</span>
+    <h2>Putting It All Together</h2>
+  </div>
+  <p>A cell is not just a bag of independent parts. It is an integrated system where every component depends on the others. The nucleus holds the instructions; ribosomes read those instructions to build proteins; the ER folds and processes those proteins; the Golgi packages and ships them; the mitochondria supply the ATP energy that powers all of this work; the cytoskeleton moves materials from place to place; and the cell membrane controls what gets in and what gets out. Remove any one piece and the system breaks down.</p>
+  <p>Understanding cells at the basic level means grasping this interconnectedness. When a cell receives a signal from outside (say, a hormone binding to a receptor on the membrane), that signal can trigger the nucleus to turn on specific genes, which leads to new proteins being made, which might cause the cell to divide, change shape, or release a chemical signal of its own. Biology at this scale is about communication and coordination, thousands of molecular events happening in concert every second inside a space smaller than the period at the end of this sentence.</p>
+
+  <div class="callout example">
+    <div class="callout-title">Example</div>
+    When you eat a meal, the hormone insulin binds to receptors on your cell membranes, triggering a signal inside the cell that ultimately causes glucose transporter proteins to move to the membrane surface so glucose can enter. This involves the membrane, signaling proteins, gene expression, and energy use, all working together.
+  </div>
+
+  <div class="callout key">
+    <div class="callout-title">Key Takeaway</div>
+    The cell is an integrated system. Organelles do not work in isolation; they cooperate in pathways that keep the cell alive, responsive, and functional.
+  </div>
+</div>
+
+</div><!-- END STUDY TAB -->
+
+
+<!-- ============ QUIZ TAB ============ -->
+<div id="tab-quiz" class="tab-panel">
+  <div style="margin-bottom:20px">
+    <div class="quiz-progress"><div class="quiz-progress-bar" id="quizProgressBar"></div></div>
+    <div id="quizCounter" style="font-family:var(--mono);font-size:0.85rem;color:var(--text-light);text-align:center;margin-bottom:10px;"></div>
+  </div>
+  <div id="quizContainer"></div>
+  <div class="quiz-nav" id="quizNav">
+    <button class="quiz-btn secondary" id="quizPrev" onclick="quizPrev()">← Previous</button>
+    <button class="quiz-btn primary" id="quizNext" onclick="quizNext()">Next →</button>
+  </div>
+  <div id="quizScoreCard" class="quiz-score-card" style="display:none;"></div>
+</div>
+
+<!-- ============ FLASHCARDS TAB ============ -->
+<div id="tab-flashcards" class="tab-panel">
+  <div class="fc-filters" id="fcFilters"></div>
+  <div class="fc-container">
+    <div class="fc-card" id="fcCard" onclick="flipCard()">
+      <div class="fc-face fc-front">
+        <div class="fc-label">Term</div>
+        <div class="fc-text" id="fcFrontText"></div>
+        <div class="fc-category" id="fcFrontCat"></div>
+      </div>
+      <div class="fc-face fc-back">
+        <div class="fc-label">Definition</div>
+        <div class="fc-text" id="fcBackText"></div>
+        <div class="fc-category" id="fcBackCat"></div>
+      </div>
+    </div>
+  </div>
+  <div class="fc-nav">
+    <button class="fc-nav-btn" onclick="fcPrev()">← Prev</button>
+    <span class="fc-counter" id="fcCounter">1 / 50</span>
+    <button class="fc-nav-btn" onclick="fcNext()">Next →</button>
+  </div>
+</div>
+
+<!-- ============ SHORT ANSWER TAB ============ -->
+<div id="tab-shortanswer" class="tab-panel">
+  <div id="saContainer"></div>
+</div>
+
+</div><!-- END CONTAINER -->
+
+<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0})">↑</button>
+
+<script>
+// ========== TAB SWITCHING ==========
+function showTab(tab) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('tab-' + tab).classList.add('active');
+  event.target.classList.add('active');
+  window.scrollTo({top: 300, behavior: 'smooth'});
+}
+
+// ========== SCROLL TOP BUTTON ==========
+window.addEventListener('scroll', () => {
+  document.getElementById('scrollTop').classList.toggle('show', window.scrollY > 400);
+});
+
+// ========== QUIZ DATA (50 questions) ==========
+const quizData = [
+  {q:"What is the basic unit of life?",opts:["Atom","Cell","Organ","Molecule"],ans:1,exp:"The cell is the smallest unit that can carry out all life functions. Atoms and molecules are not alive on their own; organs are made of many cells."},
+  {q:"Which of the following is a component of cell theory?",opts:["Cells can arise spontaneously from non-living matter","All living organisms are made of cells","Viruses are the simplest form of life","Cells are made entirely of protein"],ans:1,exp:"Cell theory states that all living things are made of cells, cells are the basic unit of life, and all cells come from pre-existing cells."},
+  {q:"What distinguishes a prokaryotic cell from a eukaryotic cell?",opts:["Prokaryotes are larger","Prokaryotes lack a nucleus","Prokaryotes have more organelles","Prokaryotes have a cell wall and eukaryotes do not"],ans:1,exp:"The defining feature of prokaryotes is the absence of a membrane-bound nucleus. Their DNA floats freely in the cytoplasm."},
+  {q:"Which of these organisms is a prokaryote?",opts:["Mushroom","Human","Bacterium","Fern"],ans:2,exp:"Bacteria are prokaryotes. Mushrooms (fungi), humans (animals), and ferns (plants) are all eukaryotes."},
+  {q:"What is the main component of the cell membrane?",opts:["Cellulose","Phospholipids","Proteins only","DNA"],ans:1,exp:"The cell membrane is primarily composed of a phospholipid bilayer with embedded proteins."},
+  {q:"In the fluid mosaic model, 'fluid' refers to:",opts:["Water inside the cell","The ability of membrane components to move around","Blood flowing past the cell","The cytoplasm's gel-like consistency"],ans:1,exp:"'Fluid' describes how phospholipids and proteins can drift laterally within the membrane, not locked in fixed positions."},
+  {q:"What is the function of the nucleus?",opts:["Energy production","Protein folding","Storing DNA and controlling gene expression","Digesting waste materials"],ans:2,exp:"The nucleus houses DNA, organized into chromosomes, and controls which genes are expressed by sending mRNA to ribosomes."},
+  {q:"Messenger RNA (mRNA) travels from the _____ to the _____.",opts:["Ribosome to the nucleus","Nucleus to the ribosome","Golgi to the ER","Cell membrane to the lysosome"],ans:1,exp:"mRNA is made in the nucleus as a copy of a gene, then exits through nuclear pores to reach ribosomes in the cytoplasm."},
+  {q:"Ribosomes are responsible for:",opts:["Producing ATP","Building proteins","Storing water","Digesting food"],ans:1,exp:"Ribosomes read mRNA instructions and assemble amino acids into proteins."},
+  {q:"Which organelle is called the 'powerhouse of the cell'?",opts:["Nucleus","Golgi apparatus","Mitochondrion","Chloroplast"],ans:2,exp:"Mitochondria produce most of the cell's ATP through cellular respiration, earning them the nickname 'powerhouse.'"},
+  {q:"The equation C₆H₁₂O₆ + 6O₂ → 6CO₂ + 6H₂O + ATP represents:",opts:["Photosynthesis","Cellular respiration","Fermentation","DNA replication"],ans:1,exp:"This is the overall equation for cellular respiration: glucose and oxygen yield carbon dioxide, water, and ATP."},
+  {q:"Cristae are folds found in the:",opts:["Cell membrane","Nuclear envelope","Inner mitochondrial membrane","Golgi apparatus"],ans:2,exp:"Cristae are the folds of the inner mitochondrial membrane, increasing surface area for ATP production."},
+  {q:"The rough endoplasmic reticulum is 'rough' because it is covered with:",opts:["Lysosomes","Mitochondria","Ribosomes","Chloroplasts"],ans:2,exp:"Ribosomes on the surface of the rough ER give it its bumpy appearance. These ribosomes synthesize proteins."},
+  {q:"The Golgi apparatus functions primarily to:",opts:["Produce energy","Modify, sort, and package proteins","Replicate DNA","Destroy pathogens"],ans:1,exp:"The Golgi receives proteins from the ER, modifies them (e.g., adds sugar groups), sorts them, and ships them to their destinations."},
+  {q:"What do lysosomes do?",opts:["Build proteins","Produce glucose","Break down waste and cellular debris","Copy DNA"],ans:2,exp:"Lysosomes contain digestive enzymes that break down worn-out organelles, food particles, and invading bacteria."},
+  {q:"Which structure is found in plant cells but NOT in animal cells?",opts:["Mitochondrion","Cell membrane","Cell wall","Ribosome"],ans:2,exp:"Plant cells have a rigid cell wall made of cellulose outside the cell membrane. Animal cells lack this structure."},
+  {q:"Chloroplasts are the site of:",opts:["Cellular respiration","Photosynthesis","Protein synthesis","DNA replication"],ans:1,exp:"Chloroplasts use sunlight to convert CO₂ and water into glucose and oxygen, the process of photosynthesis."},
+  {q:"The large central vacuole in plant cells is primarily used for:",opts:["ATP production","Protein folding","Water storage and maintaining cell shape","DNA storage"],ans:2,exp:"The central vacuole stores water, nutrients, and waste, and its turgor pressure helps maintain the plant cell's rigid shape."},
+  {q:"Do plant cells have mitochondria?",opts:["No, they only have chloroplasts","Yes, they have both mitochondria and chloroplasts","Only when it is dark outside","Only in root cells"],ans:1,exp:"Plant cells have BOTH mitochondria (for cellular respiration) and chloroplasts (for photosynthesis). They need to produce ATP day and night."},
+  {q:"What is mitosis?",opts:["The division of a cell's cytoplasm","Cell death","Nuclear division producing two genetically identical nuclei","The creation of sex cells"],ans:2,exp:"Mitosis is the division of the nucleus into two identical copies. Cytokinesis then splits the cytoplasm."},
+  {q:"Before a cell divides, it must first:",opts:["Destroy its old organelles","Copy all of its DNA","Eliminate its cell membrane","Shrink in size"],ans:1,exp:"DNA replication during S phase ensures each daughter cell receives a complete set of genetic instructions."},
+  {q:"The cell cycle phase where the cell grows and copies its DNA is called:",opts:["Mitotic phase","Interphase","Cytokinesis","Prophase"],ans:1,exp:"Interphase (G1, S, G2) is the longest part of the cell cycle, during which the cell grows and replicates DNA."},
+  {q:"How many daughter cells result from one round of mitosis and cytokinesis?",opts:["1","2","4","8"],ans:1,exp:"Mitosis followed by cytokinesis produces exactly 2 genetically identical daughter cells."},
+  {q:"Diffusion is the movement of molecules from:",opts:["Low concentration to high concentration","High concentration to low concentration","Inside the nucleus to outside","One organelle to another"],ans:1,exp:"Diffusion is passive movement down the concentration gradient, from areas of higher concentration to areas of lower concentration."},
+  {q:"Osmosis is specifically the diffusion of:",opts:["Glucose","Oxygen","Water","Proteins"],ans:2,exp:"Osmosis is defined as the diffusion of water across a selectively permeable membrane."},
+  {q:"Facilitated diffusion is considered passive transport because:",opts:["It uses ATP","It uses a protein channel but no energy","It moves molecules against the gradient","It occurs only in prokaryotes"],ans:1,exp:"Even though facilitated diffusion uses membrane proteins, it does not require ATP; molecules still move down their concentration gradient."},
+  {q:"Active transport requires energy because it moves substances:",opts:["Down the concentration gradient","Through the phospholipid bilayer","Against the concentration gradient","Only through water"],ans:2,exp:"Active transport uses ATP to push molecules from low to high concentration, against the natural direction of diffusion."},
+  {q:"Which structure provides structural support to plant cells?",opts:["Cytoskeleton only","Cell wall","Nucleus","Mitochondria"],ans:1,exp:"The rigid cellulose cell wall provides structural support to plant cells, allowing them to maintain shape even under pressure."},
+  {q:"The nuclear envelope is best described as a:",opts:["Single layer of protein","Double membrane with pores","Carbohydrate shell","Lipid droplet"],ans:1,exp:"The nuclear envelope is a double membrane punctuated with nuclear pores that regulate transport into and out of the nucleus."},
+  {q:"Which of these is NOT an organelle?",opts:["Mitochondrion","Ribosome","Golgi apparatus","Glucose"],ans:3,exp:"Glucose is a sugar molecule, not a cellular structure. Mitochondria, ribosomes, and the Golgi are all organelles or cellular structures."},
+  {q:"The smooth ER is involved in:",opts:["Protein synthesis","Lipid synthesis and detoxification","DNA replication","Cell division"],ans:1,exp:"The smooth ER lacks ribosomes and specializes in making lipids, detoxifying drugs, and storing calcium."},
+  {q:"Selectively permeable means the membrane:",opts:["Lets everything through","Lets nothing through","Allows some substances in while blocking others","Is made entirely of protein"],ans:2,exp:"Selectively permeable means the membrane acts as a gatekeeper, allowing certain molecules to cross while preventing others."},
+  {q:"What is cytoplasm?",opts:["The fluid inside the nucleus","The jelly-like material between the cell membrane and the nucleus","The liquid outside the cell","Another name for the cell membrane"],ans:1,exp:"Cytoplasm is the gel-like substance filling the interior of the cell (excluding the nucleus), in which organelles are suspended."},
+  {q:"According to the endosymbiotic theory, mitochondria were once:",opts:["Part of the nucleus","Free-living bacteria","Viruses","Plant cells"],ans:1,exp:"The endosymbiotic theory proposes that mitochondria originated as independent bacteria engulfed by an ancestral eukaryotic cell."},
+  {q:"What evidence supports the endosymbiotic theory for mitochondria?",opts:["Mitochondria are very large","Mitochondria have their own DNA","Mitochondria are found only in plants","Mitochondria lack membranes"],ans:1,exp:"Mitochondria have their own circular DNA and double membrane, similar to bacteria, supporting the endosymbiotic theory."},
+  {q:"Turgor pressure in plant cells is created by:",opts:["The nucleus pushing outward","ATP pushing against the membrane","Water in the vacuole pressing against the cell wall","Proteins in the cytoskeleton contracting"],ans:2,exp:"Turgor pressure is the force of water inside the central vacuole pushing outward against the rigid cell wall, keeping the plant firm."},
+  {q:"When a plant wilts, it is because:",opts:["Its mitochondria have stopped working","Its vacuoles have lost water, reducing turgor pressure","Its DNA has been damaged","Its ribosomes have broken down"],ans:1,exp:"Wilting occurs when plant cells lose water from their central vacuoles, causing a loss of turgor pressure and the plant droops."},
+  {q:"Which of these correctly lists the stages of the cell cycle in order?",opts:["Mitosis → G1 → S → G2","G1 → S → G2 → Mitosis","S → G1 → G2 → Mitosis","G2 → S → G1 → Mitosis"],ans:1,exp:"The cell cycle proceeds: G1 (growth) → S (DNA synthesis) → G2 (preparation) → Mitosis (division)."},
+  {q:"A vesicle is best described as:",opts:["A type of protein","A small membrane-bound transport sac","A segment of DNA","An energy molecule"],ans:1,exp:"Vesicles are small membrane-bound sacs that shuttle materials between organelles or to the cell surface."},
+  {q:"What is the role of the cytoskeleton?",opts:["Energy production","Gene expression","Providing shape, support, and movement to the cell","Protein digestion"],ans:2,exp:"The cytoskeleton is a network of protein fibers that gives the cell its shape, supports it, and helps move organelles around."},
+  {q:"Bacteria belong to which domain(s) of life?",opts:["Eukarya only","Bacteria (and separately, Archaea)","Fungi","Protista"],ans:1,exp:"Bacteria and Archaea are the two domains of prokaryotic life. They are separate domains, both lacking nuclei."},
+  {q:"How does a cell 'recharge' ADP back into ATP?",opts:["By removing a phosphate group","By adding a phosphate group using energy from cellular respiration","By dissolving ADP in water","By absorbing sunlight directly"],ans:1,exp:"Cellular respiration provides the energy to attach a phosphate group to ADP, converting it back into ATP."},
+  {q:"The nucleolus is responsible for producing:",opts:["mRNA","DNA","Ribosomal RNA (rRNA)","ATP"],ans:2,exp:"The nucleolus is a region within the nucleus where ribosomal RNA is synthesized, a key component of ribosomes."},
+  {q:"Which of these moves through the cell membrane by simple diffusion?",opts:["Large proteins","Oxygen gas (O₂)","Sodium ions (Na⁺)","Glucose"],ans:1,exp:"Small, nonpolar molecules like O₂ and CO₂ can pass directly through the phospholipid bilayer by simple diffusion."},
+  {q:"A hypertonic solution placed around a cell will cause the cell to:",opts:["Swell and possibly burst","Shrink as water leaves the cell","Stay the same size","Divide immediately"],ans:1,exp:"In a hypertonic solution, the concentration of solutes is higher outside. Water exits the cell by osmosis, causing it to shrink."},
+  {q:"Proteins embedded in the cell membrane serve as:",opts:["Structural DNA","Channels, receptors, and identity markers","Chromosomes","Nucleotides"],ans:1,exp:"Membrane proteins function as transport channels, signal receptors, enzymes, and cell-recognition markers."},
+  {q:"Photosynthesis occurs in which organelle?",opts:["Mitochondrion","Ribosome","Chloroplast","Lysosome"],ans:2,exp:"Chloroplasts are the site of photosynthesis, converting light energy, CO₂, and water into glucose and oxygen."},
+  {q:"The sodium-potassium pump is an example of:",opts:["Osmosis","Simple diffusion","Facilitated diffusion","Active transport"],ans:3,exp:"The Na⁺/K⁺ pump uses ATP to move sodium out and potassium into the cell against their concentration gradients: active transport."},
+  {q:"Which statement about viruses is correct?",opts:["Viruses are prokaryotic cells","Viruses are eukaryotic cells","Viruses are not cells and cannot reproduce on their own","Viruses have mitochondria"],ans:2,exp:"Viruses are not cells. They lack cellular machinery and must hijack a host cell to reproduce."},
+  {q:"What keeps the cell membrane flexible yet stable?",opts:["DNA","Cholesterol molecules in the bilayer","Ribosomes","The cell wall"],ans:1,exp:"Cholesterol molecules interspersed in the phospholipid bilayer help maintain membrane fluidity and stability."}
+];
+
+// ========== QUIZ ENGINE ==========
+let quizIdx = 0;
+let quizAnswers = new Array(quizData.length).fill(-1);
+let quizLocked = new Array(quizData.length).fill(false);
+
+function renderQuiz() {
+  const c = document.getElementById('quizContainer');
+  const d = quizData[quizIdx];
+  const letters = ['A','B','C','D'];
+  let html = `<div class="quiz-card">
+    <div class="q-num">Q${quizIdx+1} of ${quizData.length}</div>
+    <div class="q-text">${d.q}</div>
+    <div class="quiz-options">`;
+  d.opts.forEach((o,i) => {
+    let cls = '';
+    if(quizLocked[quizIdx]) {
+      cls = 'disabled';
+      if(i === d.ans) cls += ' correct';
+      else if(i === quizAnswers[quizIdx] && i !== d.ans) cls += ' wrong';
+    } else if(quizAnswers[quizIdx] === i) {
+      cls = 'selected';
+    }
+    html += `<div class="quiz-opt ${cls}" onclick="selectOpt(${i})">
+      <span class="opt-letter">${letters[i]}</span>
+      <span>${o}</span>
+    </div>`;
+  });
+  html += `</div>`;
+  if(quizLocked[quizIdx]) {
+    const correct = quizAnswers[quizIdx] === d.ans;
+    html += `<div class="quiz-feedback show ${correct?'correct':'incorrect'}">
+      ${correct ? '✓ Correct!' : '✗ Incorrect.'} ${d.exp}</div>`;
+  }
+  html += `</div>`;
+  c.innerHTML = html;
+  document.getElementById('quizCounter').textContent = `Question ${quizIdx+1} of ${quizData.length}`;
+  document.getElementById('quizProgressBar').style.width = ((quizIdx+1)/quizData.length*100)+'%';
+  document.getElementById('quizPrev').style.visibility = quizIdx===0?'hidden':'visible';
+  document.getElementById('quizNext').textContent = quizIdx===quizData.length-1?'See Score':'Next →';
+  document.getElementById('quizNav').style.display = '';
+  document.getElementById('quizScoreCard').style.display = 'none';
+}
+
+function selectOpt(i) {
+  if(quizLocked[quizIdx]) return;
+  quizAnswers[quizIdx] = i;
+  quizLocked[quizIdx] = true;
+  renderQuiz();
+}
+function quizPrev() { if(quizIdx>0){quizIdx--;renderQuiz();} }
+function quizNext() {
+  if(quizIdx<quizData.length-1){quizIdx++;renderQuiz();}
+  else { showQuizScore(); }
+}
+function showQuizScore() {
+  let score = 0;
+  quizData.forEach((d,i) => { if(quizAnswers[i]===d.ans) score++; });
+  const pct = Math.round(score/quizData.length*100);
+  let color = pct>=80?'var(--green)':pct>=60?'var(--amber)':'var(--red)';
+  document.getElementById('quizContainer').innerHTML = '';
+  document.getElementById('quizNav').style.display = 'none';
+  const sc = document.getElementById('quizScoreCard');
+  sc.style.display = 'block';
+  sc.innerHTML = `<div class="score-num" style="color:${color}">${score} / ${quizData.length}</div>
+    <div class="score-label">${pct}% — ${pct>=80?'Excellent!':pct>=60?'Good effort!':'Keep studying!'}</div>
+    <button class="quiz-btn primary" style="margin-top:20px" onclick="resetQuiz()">Retake Quiz</button>`;
+}
+function resetQuiz() {
+  quizIdx=0; quizAnswers.fill(-1); quizLocked.fill(false); renderQuiz();
+}
+
+// ========== FLASHCARD DATA (50 cards) ==========
+const fcData = [
+  {term:"Cell",def:"The basic structural and functional unit of all living organisms.",cat:"Fundamentals"},
+  {term:"Cell Theory",def:"All living things are made of cells; cells are the basic unit of life; all cells come from pre-existing cells.",cat:"Fundamentals"},
+  {term:"Unicellular",def:"An organism made of only one cell (e.g., bacteria, amoeba).",cat:"Fundamentals"},
+  {term:"Multicellular",def:"An organism made of many cells working together (e.g., humans, trees).",cat:"Fundamentals"},
+  {term:"Prokaryote",def:"A cell that lacks a membrane-bound nucleus; includes bacteria and archaea.",cat:"Cell Types"},
+  {term:"Eukaryote",def:"A cell with a membrane-bound nucleus and organelles; includes animals, plants, fungi.",cat:"Cell Types"},
+  {term:"Organelle",def:"A specialized structure inside a cell that performs a specific function.",cat:"Cell Types"},
+  {term:"Cell Membrane",def:"The thin, flexible phospholipid bilayer that surrounds every cell and controls what enters and exits.",cat:"Membrane"},
+  {term:"Phospholipid",def:"A lipid molecule with a hydrophilic head and two hydrophobic tails; the main building block of the cell membrane.",cat:"Membrane"},
+  {term:"Phospholipid Bilayer",def:"The two-layer arrangement of phospholipids forming the cell membrane.",cat:"Membrane"},
+  {term:"Selectively Permeable",def:"A property of the cell membrane: allows some substances through while blocking others.",cat:"Membrane"},
+  {term:"Fluid Mosaic Model",def:"The accepted model of membrane structure: a fluid phospholipid bilayer with a mosaic of embedded proteins.",cat:"Membrane"},
+  {term:"Cholesterol",def:"A molecule in the cell membrane that helps maintain fluidity and stability.",cat:"Membrane"},
+  {term:"Nucleus",def:"The membrane-enclosed organelle that stores DNA and controls gene expression.",cat:"Nucleus & DNA"},
+  {term:"Chromosome",def:"A structure of tightly coiled DNA and proteins found in the nucleus.",cat:"Nucleus & DNA"},
+  {term:"Gene",def:"A segment of DNA containing instructions for building one protein or RNA.",cat:"Nucleus & DNA"},
+  {term:"Nuclear Envelope",def:"The double membrane surrounding the nucleus, with pores for transport.",cat:"Nucleus & DNA"},
+  {term:"Nuclear Pore",def:"An opening in the nuclear envelope that regulates transport in and out of the nucleus.",cat:"Nucleus & DNA"},
+  {term:"Nucleolus",def:"A dense region in the nucleus where ribosomal RNA (rRNA) is produced.",cat:"Nucleus & DNA"},
+  {term:"mRNA",def:"Messenger RNA; carries a gene's instructions from the nucleus to the ribosome.",cat:"Nucleus & DNA"},
+  {term:"Ribosome",def:"A small structure that reads mRNA to build proteins; found free in cytoplasm or on rough ER.",cat:"Organelles"},
+  {term:"Rough ER",def:"Endoplasmic reticulum studded with ribosomes; synthesizes and processes proteins.",cat:"Organelles"},
+  {term:"Smooth ER",def:"Endoplasmic reticulum without ribosomes; makes lipids and detoxifies chemicals.",cat:"Organelles"},
+  {term:"Golgi Apparatus",def:"Stacked membrane sacs that modify, sort, and package proteins for delivery.",cat:"Organelles"},
+  {term:"Lysosome",def:"Membrane-bound organelle containing digestive enzymes to break down waste.",cat:"Organelles"},
+  {term:"Vesicle",def:"A small membrane-bound sac that transports materials within the cell.",cat:"Organelles"},
+  {term:"Cytoplasm",def:"The jelly-like material filling the cell between the membrane and the nucleus.",cat:"Organelles"},
+  {term:"Cytoskeleton",def:"A network of protein fibers that provides shape, support, and movement to the cell.",cat:"Organelles"},
+  {term:"Mitochondrion",def:"The organelle that produces most of the cell's ATP through cellular respiration.",cat:"Energy"},
+  {term:"ATP",def:"Adenosine triphosphate; the primary energy currency of the cell.",cat:"Energy"},
+  {term:"ADP",def:"Adenosine diphosphate; the 'discharged' form of ATP after energy is released.",cat:"Energy"},
+  {term:"Cellular Respiration",def:"The metabolic process that breaks down glucose with oxygen to produce ATP, CO₂, and water.",cat:"Energy"},
+  {term:"Cristae",def:"The folds of the inner mitochondrial membrane that increase surface area for ATP production.",cat:"Energy"},
+  {term:"Endosymbiotic Theory",def:"The idea that mitochondria and chloroplasts originated as free-living bacteria engulfed by ancestral cells.",cat:"Energy"},
+  {term:"Cell Wall",def:"A rigid outer layer (cellulose in plants) outside the cell membrane providing structural support.",cat:"Plant Cells"},
+  {term:"Chloroplast",def:"An organelle in plant cells that converts sunlight into glucose through photosynthesis.",cat:"Plant Cells"},
+  {term:"Photosynthesis",def:"The process of using light energy to make glucose from CO₂ and water; occurs in chloroplasts.",cat:"Plant Cells"},
+  {term:"Central Vacuole",def:"A large water-filled organelle in plant cells that stores materials and maintains cell shape.",cat:"Plant Cells"},
+  {term:"Turgor Pressure",def:"The pressure of water inside the vacuole pressing against the cell wall, keeping the plant firm.",cat:"Plant Cells"},
+  {term:"Cell Cycle",def:"The sequence of growth, DNA replication, and division that a cell undergoes.",cat:"Cell Division"},
+  {term:"Interphase",def:"The phase of the cell cycle where the cell grows and copies its DNA (includes G1, S, G2).",cat:"Cell Division"},
+  {term:"S Phase",def:"The part of interphase where DNA synthesis (replication) occurs.",cat:"Cell Division"},
+  {term:"Mitosis",def:"Nuclear division producing two genetically identical nuclei; used for growth and repair.",cat:"Cell Division"},
+  {term:"Cytokinesis",def:"The physical splitting of the cytoplasm that follows mitosis, producing two separate daughter cells.",cat:"Cell Division"},
+  {term:"Daughter Cells",def:"The two new cells produced by mitosis; genetically identical to each other and the parent cell.",cat:"Cell Division"},
+  {term:"Diffusion",def:"The passive movement of molecules from high to low concentration.",cat:"Transport"},
+  {term:"Osmosis",def:"The diffusion of water across a selectively permeable membrane.",cat:"Transport"},
+  {term:"Facilitated Diffusion",def:"Passive transport using membrane proteins to help molecules cross the membrane.",cat:"Transport"},
+  {term:"Active Transport",def:"Movement of molecules against the concentration gradient, requiring ATP energy.",cat:"Transport"},
+  {term:"Concentration Gradient",def:"The difference in concentration of a substance between two areas, driving diffusion.",cat:"Transport"}
+];
+
+// ========== FLASHCARD ENGINE ==========
+let fcIdx = 0;
+let fcFilter = 'All';
+let filteredFC = [...fcData];
+
+function getCategories() {
+  return ['All', ...new Set(fcData.map(f=>f.cat))];
+}
+
+function initFC() {
+  const fDiv = document.getElementById('fcFilters');
+  getCategories().forEach(cat => {
+    const btn = document.createElement('button');
+    btn.className = 'fc-filter-btn' + (cat==='All'?' active':'');
+    btn.textContent = cat;
+    btn.onclick = () => { filterFC(cat, btn); };
+    fDiv.appendChild(btn);
+  });
+  renderFC();
+}
+
+function filterFC(cat, btn) {
+  fcFilter = cat;
+  document.querySelectorAll('.fc-filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  filteredFC = cat==='All' ? [...fcData] : fcData.filter(f=>f.cat===cat);
+  fcIdx = 0;
+  document.getElementById('fcCard').classList.remove('flipped');
+  renderFC();
+}
+
+function renderFC() {
+  if(filteredFC.length===0) return;
+  const f = filteredFC[fcIdx];
+  document.getElementById('fcFrontText').textContent = f.term;
+  document.getElementById('fcBackText').textContent = f.def;
+  document.getElementById('fcFrontCat').textContent = f.cat;
+  document.getElementById('fcBackCat').textContent = f.cat;
+  document.getElementById('fcCounter').textContent = `${fcIdx+1} / ${filteredFC.length}`;
+}
+
+function flipCard() { document.getElementById('fcCard').classList.toggle('flipped'); }
+function fcPrev() { if(fcIdx>0){fcIdx--;document.getElementById('fcCard').classList.remove('flipped');renderFC();} }
+function fcNext() { if(fcIdx<filteredFC.length-1){fcIdx++;document.getElementById('fcCard').classList.remove('flipped');renderFC();} }
+
+// ========== SHORT ANSWER DATA (12 questions) ==========
+const saData = [
+  {
+    q: "Describe cell theory and explain why it is important in biology.",
+    concepts: [
+      {name:"All living things are made of cells", weight:3, patterns:[/all\s+(living|organism)/i, /made\s+(of|from)\s+cell/i, /composed\s+of\s+cell/i]},
+      {name:"Cell is the basic unit of life", weight:3, patterns:[/basic\s+unit/i, /fundamental\s+unit/i, /smallest\s+unit.*life/i]},
+      {name:"Cells come from pre-existing cells", weight:3, patterns:[/pre-?existing/i, /come\s+from.*cell/i, /arise\s+from.*cell/i, /existing\s+cell/i, /no\s+spontaneous/i]},
+      {name:"Foundation of biology", weight:1, patterns:[/foundation/i, /foundational/i, /fundamental/i, /important.*biolog/i, /basis/i, /framework/i]}
+    ],
+    model: "Cell theory consists of three principles: all living organisms are made of one or more cells, the cell is the basic unit of life, and all new cells arise from pre-existing cells. It is important because it provides the foundational framework for all of biology, establishing that life is cellular in nature and that cells are not spontaneously generated."
+  },
+  {
+    q: "Compare prokaryotic and eukaryotic cells. What is the main structural difference between them?",
+    concepts: [
+      {name:"Prokaryotes lack a nucleus", weight:3, patterns:[/prokaryot.*lack.*nucleus/i, /prokaryot.*no\s+nucleus/i, /no\s+membrane.*bound.*nucleus/i, /without\s+(a\s+)?nucleus/i]},
+      {name:"Eukaryotes have a nucleus", weight:3, patterns:[/eukaryot.*have.*nucleus/i, /eukaryot.*contain.*nucleus/i, /membrane.*bound.*nucleus/i, /true\s+nucleus/i]},
+      {name:"Prokaryotes are simpler/smaller", weight:2, patterns:[/prokaryot.*(simpl|small)/i, /simpl.*prokaryot/i, /small.*prokaryot/i]},
+      {name:"Eukaryotes have membrane-bound organelles", weight:2, patterns:[/eukaryot.*organelle/i, /membrane.*bound.*organelle/i, /compartment/i]}
+    ],
+    model: "Prokaryotic cells (bacteria, archaea) are smaller and simpler, lacking a membrane-bound nucleus; their DNA floats freely in the cytoplasm. Eukaryotic cells (animals, plants, fungi) are larger and more complex, with a true membrane-bound nucleus that houses their DNA. Eukaryotes also contain membrane-bound organelles like mitochondria, ER, and Golgi, which prokaryotes lack."
+  },
+  {
+    q: "Explain the structure of the cell membrane using the fluid mosaic model.",
+    concepts: [
+      {name:"Phospholipid bilayer", weight:3, patterns:[/phospholipid\s+bilayer/i, /two\s+(layers?|sheets?).*phospholipid/i, /double\s+layer.*lipid/i, /bilayer/i]},
+      {name:"Hydrophilic heads and hydrophobic tails", weight:2, patterns:[/hydrophilic.*head/i, /hydrophobic.*tail/i, /water.*(loving|fearing|attract|repel)/i]},
+      {name:"Embedded proteins", weight:2, patterns:[/protein.*embed/i, /embed.*protein/i, /membrane\s+protein/i, /protein.*membrane/i, /channel|receptor/i]},
+      {name:"Fluid because components move", weight:2, patterns:[/fluid.*move/i, /move.*lateral/i, /drift/i, /fluid.*component/i]},
+      {name:"Mosaic pattern of proteins", weight:1, patterns:[/mosaic.*pattern/i, /mosaic.*protein/i, /patchwork/i, /mosaic/i]}
+    ],
+    model: "The cell membrane is structured as a phospholipid bilayer, where phospholipids arrange with hydrophilic heads facing outward and hydrophobic tails facing inward. Scattered throughout this bilayer are various proteins that serve as channels, receptors, and identity markers. The model is called 'fluid' because the lipids and proteins can move laterally, and 'mosaic' because the variety of components creates a patchwork pattern."
+  },
+  {
+    q: "What is the function of the nucleus and how does it communicate with the rest of the cell?",
+    concepts: [
+      {name:"Stores/houses DNA", weight:3, patterns:[/stor.*DNA/i, /hous.*DNA/i, /contain.*DNA/i, /hold.*DNA/i, /protect.*DNA/i]},
+      {name:"Controls gene expression", weight:2, patterns:[/control.*gene/i, /gene\s+expression/i, /regulat.*gene/i, /determin.*which.*gene/i]},
+      {name:"Sends mRNA to ribosomes", weight:3, patterns:[/mRNA/i, /messenger\s+RNA/i, /send.*instruct/i, /cop(y|ies).*gene/i]},
+      {name:"Nuclear pores allow transport", weight:2, patterns:[/nuclear\s+pore/i, /pore/i, /transport.*nucle/i]}
+    ],
+    model: "The nucleus stores the cell's DNA organized in chromosomes and controls gene expression. It communicates with the rest of the cell by producing mRNA, which is a copy of specific gene instructions. This mRNA exits through nuclear pores in the nuclear envelope and travels to ribosomes in the cytoplasm, where the instructions are used to build proteins."
+  },
+  {
+    q: "Describe the roles of the rough ER, smooth ER, and Golgi apparatus. How do they work together?",
+    concepts: [
+      {name:"Rough ER synthesizes/folds proteins", weight:2, patterns:[/rough\s+ER.*(protein|synthe|fold|make|build)/i, /(protein|synthe|fold|make).*(rough\s+ER|RER)/i]},
+      {name:"Rough ER has ribosomes", weight:1, patterns:[/rough.*ribosome/i, /ribosome.*rough/i, /studded/i]},
+      {name:"Smooth ER makes lipids/detoxifies", weight:2, patterns:[/smooth\s+ER.*(lipid|detox|drug)/i, /(lipid|detox|drug).*(smooth\s+ER|SER)/i]},
+      {name:"Golgi modifies/sorts/packages proteins", weight:3, patterns:[/golgi.*(modif|sort|package|ship|label)/i, /(modif|sort|package|ship).*(golgi)/i, /post\s+office/i]},
+      {name:"Vesicles transport between them", weight:2, patterns:[/vesicle/i, /transport.*between/i, /ER.*golgi/i, /ship.*from.*to/i]}
+    ],
+    model: "The rough ER is studded with ribosomes and synthesizes and folds proteins destined for membranes or export. The smooth ER lacks ribosomes and specializes in lipid synthesis and detoxification. The Golgi apparatus receives proteins from the rough ER via vesicles, then modifies, sorts, and packages them for delivery to their final destinations. They work together as an assembly line: proteins are made in the rough ER, shipped in vesicles to the Golgi, and then dispatched to where they are needed."
+  },
+  {
+    q: "Why are mitochondria called the 'powerhouse of the cell'? Include the basic equation for cellular respiration.",
+    concepts: [
+      {name:"Produce ATP/energy", weight:3, patterns:[/produc.*ATP/i, /make.*ATP/i, /generat.*ATP/i, /energy/i, /powerhouse/i]},
+      {name:"Cellular respiration", weight:2, patterns:[/cellular\s+respiration/i, /aerobic\s+respiration/i]},
+      {name:"Glucose + oxygen → CO₂ + water + ATP", weight:3, patterns:[/glucose.*oxygen/i, /C6H12O6/i, /CO2.*H2O/i, /carbon\s+dioxide.*water/i, /sugar.*oxygen/i]},
+      {name:"Cristae increase surface area", weight:1, patterns:[/cristae/i, /fold.*inner.*membrane/i, /surface\s+area/i]}
+    ],
+    model: "Mitochondria are called the powerhouse because they produce the majority of the cell's ATP through cellular respiration. This process takes glucose and oxygen and converts them into carbon dioxide, water, and ATP energy. The simplified equation is: C₆H₁₂O₆ + 6O₂ → 6CO₂ + 6H₂O + ATP. The inner mitochondrial membrane has folds called cristae that increase the surface area available for ATP-producing reactions."
+  },
+  {
+    q: "List three structures found in plant cells but not animal cells, and explain the function of each.",
+    concepts: [
+      {name:"Cell wall provides structural support", weight:3, patterns:[/cell\s+wall.*(support|structur|rigid|shape|cellulose)/i, /(support|structur|rigid|shape|cellulose).*cell\s+wall/i]},
+      {name:"Chloroplasts perform photosynthesis", weight:3, patterns:[/chloroplast.*(photosynthe|sunlight|light|glucose)/i, /(photosynthe|sunlight|light).*chloroplast/i]},
+      {name:"Central vacuole stores water/maintains shape", weight:3, patterns:[/vacuole.*(water|stor|shape|turgor|pressure)/i, /(water|stor|shape|turgor).*vacuole/i]},
+      {name:"All three structures named", weight:1, patterns:[/cell\s+wall.*chloroplast.*vacuole/i, /wall.*chloro.*vacuo/i]}
+    ],
+    model: "The three structures unique to plant cells are: the cell wall, a rigid layer of cellulose outside the membrane that provides structural support; chloroplasts, organelles that carry out photosynthesis by converting sunlight, CO₂, and water into glucose; and the central vacuole, a large water-filled compartment that stores nutrients and waste, and maintains cell shape through turgor pressure."
+  },
+  {
+    q: "Explain what happens during mitosis and why it is important for living organisms.",
+    concepts: [
+      {name:"Nuclear division into two identical nuclei", weight:3, patterns:[/two.*(identical|same|matching)/i, /identical.*daughter/i, /divid.*nucleus/i, /nuclear\s+division/i]},
+      {name:"DNA is copied first", weight:2, patterns:[/DNA.*(copi|replic|duplicat)/i, /(copi|replic|duplicat).*DNA/i, /S\s+phase/i]},
+      {name:"Important for growth", weight:2, patterns:[/growth/i, /grow/i, /develop/i]},
+      {name:"Important for repair", weight:2, patterns:[/repair/i, /heal/i, /replac.*damaged/i, /wound/i]}
+    ],
+    model: "During mitosis, a cell's nucleus divides to produce two genetically identical daughter nuclei. Before mitosis begins, the cell copies all of its DNA during S phase. The chromosomes are then carefully separated so each new cell gets a complete set. Mitosis is important because it allows organisms to grow by increasing cell number and to repair damaged tissues by replacing lost or injured cells with identical copies."
+  },
+  {
+    q: "Compare and contrast diffusion, osmosis, and facilitated diffusion.",
+    concepts: [
+      {name:"All three are passive/no energy required", weight:3, patterns:[/passive/i, /no\s+energy/i, /without\s+energy/i, /don'?t.*require.*energy/i, /does\s+not.*require.*ATP/i]},
+      {name:"Diffusion: high to low concentration", weight:2, patterns:[/diffusion.*high\s+to\s+low/i, /high.*low.*concentration/i, /down.*gradient/i]},
+      {name:"Osmosis: diffusion of water", weight:3, patterns:[/osmosis.*water/i, /water.*osmosis/i, /diffusion\s+of\s+water/i]},
+      {name:"Facilitated: uses membrane proteins", weight:3, patterns:[/facilitated.*(protein|channel|carrier)/i, /(protein|channel|carrier).*facilitated/i, /help.*protein/i]}
+    ],
+    model: "All three are forms of passive transport, meaning they require no energy (ATP). Diffusion is the movement of any molecule from an area of high concentration to low concentration. Osmosis is specifically the diffusion of water across a selectively permeable membrane. Facilitated diffusion also moves substances down their concentration gradient, but uses membrane proteins (channels or carriers) to help larger or charged molecules that cannot pass through the lipid bilayer on their own."
+  },
+  {
+    q: "What is active transport and how does it differ from passive transport? Give an example.",
+    concepts: [
+      {name:"Active transport uses energy/ATP", weight:3, patterns:[/active.*energy/i, /active.*ATP/i, /requir.*energy/i, /uses?\s+ATP/i]},
+      {name:"Moves against concentration gradient", weight:3, patterns:[/against.*gradient/i, /low\s+to\s+high/i, /against.*concentration/i]},
+      {name:"Passive transport requires no energy", weight:2, patterns:[/passive.*no\s+energy/i, /passive.*without/i, /passive.*doesn'?t/i]},
+      {name:"Sodium-potassium pump example", weight:2, patterns:[/sodium.*potassium/i, /Na.*K/i, /pump/i]}
+    ],
+    model: "Active transport requires ATP energy to move substances against the concentration gradient, from areas of low concentration to high concentration. This is the opposite of passive transport, which requires no energy and moves substances down their concentration gradient. A key example is the sodium-potassium pump, which uses ATP to pump sodium ions out of the cell and potassium ions in, maintaining the electrical balance the cell needs for proper function."
+  },
+  {
+    q: "Explain the endosymbiotic theory. What evidence supports it?",
+    concepts: [
+      {name:"Mitochondria/chloroplasts were once free-living bacteria", weight:3, patterns:[/free.*living.*bacter/i, /independent.*bacter/i, /ancestr.*bacter/i, /once.*bacter/i, /engulf/i]},
+      {name:"Engulfed by ancestral eukaryotic cell", weight:2, patterns:[/engulf/i, /ancestr.*cell/i, /ancestr.*eukary/i, /swallow/i, /taken\s+in/i]},
+      {name:"Have their own DNA", weight:3, patterns:[/own\s+DNA/i, /their\s+own.*DNA/i, /circular\s+DNA/i, /DNA.*mitochond/i]},
+      {name:"Have double membrane", weight:2, patterns:[/double\s+membrane/i, /two\s+membrane/i, /own\s+membrane/i]}
+    ],
+    model: "The endosymbiotic theory proposes that mitochondria and chloroplasts were originally free-living bacteria that were engulfed by an ancestral eukaryotic cell. Instead of being digested, these bacteria formed a mutually beneficial relationship with the host cell and eventually became permanent organelles. Key evidence includes the fact that both mitochondria and chloroplasts have their own DNA (similar to bacterial DNA), have double membranes (consistent with being engulfed), and reproduce by dividing independently within the cell."
+  },
+  {
+    q: "A student places a plant cell in pure water. Describe what happens to the cell and why, using the correct terminology.",
+    concepts: [
+      {name:"Water enters by osmosis", weight:3, patterns:[/water.*enter/i, /water.*move.*in/i, /osmosis/i, /absorb.*water/i]},
+      {name:"Hypotonic solution (more water outside)", weight:2, patterns:[/hypotonic/i, /more\s+water\s+outside/i, /higher\s+concentration.*outside/i, /lower\s+solute.*outside/i]},
+      {name:"Vacuole swells / cell becomes turgid", weight:2, patterns:[/swell/i, /turgid/i, /turgor/i, /expand/i, /plump/i, /firm/i]},
+      {name:"Cell wall prevents bursting", weight:3, patterns:[/cell\s+wall.*prevent.*burst/i, /wall.*stop.*burst/i, /wall.*protect/i, /won'?t.*burst/i, /doesn'?t.*burst/i, /cell\s+wall/i]}
+    ],
+    model: "When a plant cell is placed in pure water (a hypotonic solution), water moves into the cell by osmosis because the concentration of water is higher outside than inside. The central vacuole fills with water and the cell swells, becoming turgid. However, unlike an animal cell, the plant cell does not burst because the rigid cell wall provides structural support and resists the expansion, preventing lysis. This turgor pressure is actually what keeps plants upright and firm."
+  }
+];
+
+// ========== SHORT ANSWER GRADING ENGINE ==========
+function gradeSA(idx) {
+  const textarea = document.getElementById('sa-text-'+idx);
+  const answer = textarea.value.trim();
+  if(!answer) return;
+
+  const q = saData[idx];
+  let totalWeight = 0;
+  let earnedWeight = 0;
+  const results = [];
+
+  q.concepts.forEach(c => {
+    totalWeight += c.weight;
+    const hit = c.patterns.some(p => p.test(answer));
+    if(hit) earnedWeight += c.weight;
+    results.push({name:c.name, hit});
+  });
+
+  // Word count bonus (up to 5% for thorough answers 50+ words)
+  const wordCount = answer.split(/\s+/).length;
+  let bonus = 0;
+  if(wordCount >= 50) bonus = 0.05;
+  else if(wordCount >= 30) bonus = 0.02;
+
+  let pct = Math.min(100, Math.round((earnedWeight/totalWeight)*100 + bonus*100));
+  let color = pct>=80?'var(--green)':pct>=60?'var(--amber)':'var(--red)';
+
+  const resultDiv = document.getElementById('sa-result-'+idx);
+  let html = `<div class="sa-score-label" style="color:${color}">Score: ${pct}%</div>
+    <div class="sa-progress-bar"><div class="sa-progress-fill" style="width:${pct}%;background:${color}"></div></div>
+    <div class="sa-concepts">`;
+  results.forEach(r => {
+    html += `<span class="sa-tag ${r.hit?'hit':'miss'}">${r.hit?'✓':'✗'} ${r.name}</span>`;
+  });
+  html += `</div>
+    <button class="sa-model-toggle" onclick="toggleModel(${idx})">Show Model Answer</button>
+    <div class="sa-model-answer" id="sa-model-${idx}">${q.model}</div>`;
+  resultDiv.innerHTML = html;
+  resultDiv.classList.add('show');
+}
+
+function toggleModel(idx) {
+  document.getElementById('sa-model-'+idx).classList.toggle('show');
+}
+
+function initSA() {
+  const c = document.getElementById('saContainer');
+  let html = '';
+  saData.forEach((q,i) => {
+    html += `<div class="sa-card">
+      <div class="q-num">SA ${i+1} of ${saData.length}</div>
+      <div class="q-text">${q.q}</div>
+      <textarea class="sa-textarea" id="sa-text-${i}" placeholder="Type your answer here..."></textarea>
+      <button class="sa-grade-btn" onclick="gradeSA(${i})">Grade Answer</button>
+      <div class="sa-result" id="sa-result-${i}"></div>
+    </div>`;
+  });
+  c.innerHTML = html;
+}
+
+// ========== INIT ==========
+document.addEventListener('DOMContentLoaded', () => {
+  renderQuiz();
+  initFC();
+  initSA();
+});
+</script>
+</body>
+</html>
