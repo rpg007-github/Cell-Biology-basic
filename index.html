@@ -702,25 +702,56 @@ code {
 .section, .quiz-card, .sa-card, .toc {
   animation: fadeUp 0.4s ease both;
 }
+
+/* ─── WCAG 2.1 AA: Visible focus indicators ─── */
+:focus-visible {
+  outline: 3px solid #005fcc !important;
+  outline-offset: 2px !important;
+}
+.tab-btn:focus-visible, .nav-btn:focus-visible {
+  outline: 3px solid #005fcc !important;
+  outline-offset: 2px !important;
+}
+/* ─── Skip link ─── */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 1rem;
+  background: #005fcc;
+  color: #fff;
+  padding: 0.6rem 1.2rem;
+  border-radius: 0 0 6px 6px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none;
+  z-index: 9999;
+  transition: top 0.2s;
+}
+.skip-link:focus {
+  top: 0;
+}
+
 </style>
 </head>
 <body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
 
 <!-- HERO -->
 <div class="hero">
-  <div class="badge">★ Basic Level</div>
+  <div class="badge"><span aria-hidden="true">★</span> Basic Level</div>
   <h1>Cell Biology</h1>
   <p>A friendly, ground-up introduction to the building blocks of life. Start here if you're new to biology or want a clear refresher.</p>
 </div>
 
-<div class="container">
+<div class="container" id="main-content" role="main">
 
 <!-- NAV TABS -->
 <div class="nav-tabs">
-  <button class="nav-tab active" onclick="showTab('study')">📖 Study Guide</button>
-  <button class="nav-tab" onclick="showTab('quiz')">✏️ Quiz</button>
+  <button class="nav-tab active" onclick="showTab('study')"><span aria-hidden="true">📖</span> Study Guide</button>
+  <button class="nav-tab" onclick="showTab('quiz')"><span aria-hidden="true">✏️</span> Quiz</button>
   <button class="nav-tab" onclick="showTab('flashcards')">🃏 Flashcards</button>
-  <button class="nav-tab" onclick="showTab('shortanswer')">📝 Short Answer</button>
+  <button class="nav-tab" onclick="showTab('shortanswer')"><span aria-hidden="true">📝</span> Short Answer</button>
 </div>
 
 <!-- ============ STUDY GUIDE TAB ============ -->
@@ -921,7 +952,7 @@ code {
 
   <div class="callout warning">
     <div class="callout-title">Common Mistake</div>
-    Students often confuse the rough ER and the Golgi. The ER makes and folds; the Golgi modifies and sorts. Proteins go ER → Golgi → destination, not the other way around.
+    Students often confuse the rough ER and the Golgi. The ER makes and folds; the Golgi modifies and sorts. Proteins go ER <span aria-hidden="true">→</span> Golgi <span aria-hidden="true">→</span> destination, not the other way around.
   </div>
 
   <table class="vocab-table">
@@ -945,7 +976,7 @@ code {
     <h2>Energy and the Mitochondria</h2>
   </div>
   <p>Cells need energy to do everything: build molecules, move, divide, send signals. The main energy currency of the cell is a molecule called <strong>ATP</strong> (adenosine triphosphate). You can think of ATP as a rechargeable battery. When the cell needs energy, it breaks off one phosphate group from ATP, releasing energy and leaving behind ADP (adenosine diphosphate). The cell then "recharges" ADP back into ATP.</p>
-  <p>The organelle primarily responsible for manufacturing ATP in eukaryotic cells is the <strong>mitochondrion</strong> (plural: mitochondria). Mitochondria take in glucose-derived molecules and oxygen and, through a multi-step process called <strong>cellular respiration</strong>, produce large quantities of ATP. The simplified overall equation is: <code>C₆H₁₂O₆ + 6O₂ → 6CO₂ + 6H₂O + ATP</code>.</p>
+  <p>The organelle primarily responsible for manufacturing ATP in eukaryotic cells is the <strong>mitochondrion</strong> (plural: mitochondria). Mitochondria take in glucose-derived molecules and oxygen and, through a multi-step process called <strong>cellular respiration</strong>, produce large quantities of ATP. The simplified overall equation is: <code>C₆H₁₂O₆ + 6O₂ <span aria-hidden="true">→</span> 6CO₂ + 6H₂O + ATP</code>.</p>
   <p>Mitochondria have their own double membrane: a smooth outer membrane and a highly folded inner membrane. The folds, called <strong>cristae</strong>, increase the surface area available for the chemical reactions that generate ATP. Interestingly, mitochondria contain their own small DNA molecule, which is evidence supporting the <strong>endosymbiotic theory</strong>, the idea that mitochondria were once free-living bacteria that were engulfed by an ancestral cell billions of years ago.</p>
 
   <div class="callout example">
@@ -982,7 +1013,7 @@ code {
     <h2>Plant Cells vs. Animal Cells</h2>
   </div>
   <p>Plant cells and animal cells are both eukaryotic, so they share most of the same organelles: nucleus, mitochondria, ER, Golgi, ribosomes, and cytoskeleton. However, plant cells have three major structures that animal cells lack, and understanding these differences is essential.</p>
-  <p>First, plant cells have a rigid <strong>cell wall</strong> made of cellulose that sits outside the cell membrane. This wall gives plants their structural support (it is why a tree can stand upright without a skeleton). Second, plant cells contain <strong>chloroplasts</strong>, the organelles that carry out <strong>photosynthesis</strong>, using sunlight to convert carbon dioxide and water into glucose and oxygen: <code>6CO₂ + 6H₂O + light → C₆H₁₂O₆ + 6O₂</code>. Like mitochondria, chloroplasts have their own DNA and double membrane, further evidence for the endosymbiotic theory. Third, plant cells typically have a large <strong>central vacuole</strong> that stores water, nutrients, and waste products and helps maintain the cell's shape by exerting pressure against the cell wall.</p>
+  <p>First, plant cells have a rigid <strong>cell wall</strong> made of cellulose that sits outside the cell membrane. This wall gives plants their structural support (it is why a tree can stand upright without a skeleton). Second, plant cells contain <strong>chloroplasts</strong>, the organelles that carry out <strong>photosynthesis</strong>, using sunlight to convert carbon dioxide and water into glucose and oxygen: <code>6CO₂ + 6H₂O + light <span aria-hidden="true">→</span> C₆H₁₂O₆ + 6O₂</code>. Like mitochondria, chloroplasts have their own DNA and double membrane, further evidence for the endosymbiotic theory. Third, plant cells typically have a large <strong>central vacuole</strong> that stores water, nutrients, and waste products and helps maintain the cell's shape by exerting pressure against the cell wall.</p>
 
   <div class="callout example">
     <div class="callout-title">Example</div>
@@ -1116,8 +1147,8 @@ code {
   </div>
   <div id="quizContainer"></div>
   <div class="quiz-nav" id="quizNav">
-    <button class="quiz-btn secondary" id="quizPrev" onclick="quizPrev()">← Previous</button>
-    <button class="quiz-btn primary" id="quizNext" onclick="quizNext()">Next →</button>
+    <button class="quiz-btn secondary" id="quizPrev" onclick="quizPrev()"><span aria-hidden="true">←</span> Previous</button>
+    <button class="quiz-btn primary" id="quizNext" onclick="quizNext()">Next <span aria-hidden="true">→</span></button>
   </div>
   <div id="quizScoreCard" class="quiz-score-card" style="display:none;"></div>
 </div>
@@ -1140,9 +1171,9 @@ code {
     </div>
   </div>
   <div class="fc-nav">
-    <button class="fc-nav-btn" onclick="fcPrev()">← Prev</button>
+    <button class="fc-nav-btn" onclick="fcPrev()"><span aria-hidden="true">←</span> Prev</button>
     <span class="fc-counter" id="fcCounter">1 / 50</span>
-    <button class="fc-nav-btn" onclick="fcNext()">Next →</button>
+    <button class="fc-nav-btn" onclick="fcNext()">Next <span aria-hidden="true">→</span></button>
   </div>
 </div>
 
@@ -1153,7 +1184,7 @@ code {
 
 </div><!-- END CONTAINER -->
 
-<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0})">↑</button>
+<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0})"><span aria-hidden="true">↑</span></button>
 
 <script>
 // ========== TAB SWITCHING ==========
@@ -1182,7 +1213,7 @@ const quizData = [
   {q:"Messenger RNA (mRNA) travels from the _____ to the _____.",opts:["Ribosome to the nucleus","Nucleus to the ribosome","Golgi to the ER","Cell membrane to the lysosome"],ans:1,exp:"mRNA is made in the nucleus as a copy of a gene, then exits through nuclear pores to reach ribosomes in the cytoplasm."},
   {q:"Ribosomes are responsible for:",opts:["Producing ATP","Building proteins","Storing water","Digesting food"],ans:1,exp:"Ribosomes read mRNA instructions and assemble amino acids into proteins."},
   {q:"Which organelle is called the 'powerhouse of the cell'?",opts:["Nucleus","Golgi apparatus","Mitochondrion","Chloroplast"],ans:2,exp:"Mitochondria produce most of the cell's ATP through cellular respiration, earning them the nickname 'powerhouse.'"},
-  {q:"The equation C₆H₁₂O₆ + 6O₂ → 6CO₂ + 6H₂O + ATP represents:",opts:["Photosynthesis","Cellular respiration","Fermentation","DNA replication"],ans:1,exp:"This is the overall equation for cellular respiration: glucose and oxygen yield carbon dioxide, water, and ATP."},
+  {q:"The equation C₆H₁₂O₆ + 6O₂ <span aria-hidden="true">→</span> 6CO₂ + 6H₂O + ATP represents:",opts:["Photosynthesis","Cellular respiration","Fermentation","DNA replication"],ans:1,exp:"This is the overall equation for cellular respiration: glucose and oxygen yield carbon dioxide, water, and ATP."},
   {q:"Cristae are folds found in the:",opts:["Cell membrane","Nuclear envelope","Inner mitochondrial membrane","Golgi apparatus"],ans:2,exp:"Cristae are the folds of the inner mitochondrial membrane, increasing surface area for ATP production."},
   {q:"The rough endoplasmic reticulum is 'rough' because it is covered with:",opts:["Lysosomes","Mitochondria","Ribosomes","Chloroplasts"],ans:2,exp:"Ribosomes on the surface of the rough ER give it its bumpy appearance. These ribosomes synthesize proteins."},
   {q:"The Golgi apparatus functions primarily to:",opts:["Produce energy","Modify, sort, and package proteins","Replicate DNA","Destroy pathogens"],ans:1,exp:"The Golgi receives proteins from the ER, modifies them (e.g., adds sugar groups), sorts them, and ships them to their destinations."},
@@ -1209,7 +1240,7 @@ const quizData = [
   {q:"What evidence supports the endosymbiotic theory for mitochondria?",opts:["Mitochondria are very large","Mitochondria have their own DNA","Mitochondria are found only in plants","Mitochondria lack membranes"],ans:1,exp:"Mitochondria have their own circular DNA and double membrane, similar to bacteria, supporting the endosymbiotic theory."},
   {q:"Turgor pressure in plant cells is created by:",opts:["The nucleus pushing outward","ATP pushing against the membrane","Water in the vacuole pressing against the cell wall","Proteins in the cytoskeleton contracting"],ans:2,exp:"Turgor pressure is the force of water inside the central vacuole pushing outward against the rigid cell wall, keeping the plant firm."},
   {q:"When a plant wilts, it is because:",opts:["Its mitochondria have stopped working","Its vacuoles have lost water, reducing turgor pressure","Its DNA has been damaged","Its ribosomes have broken down"],ans:1,exp:"Wilting occurs when plant cells lose water from their central vacuoles, causing a loss of turgor pressure and the plant droops."},
-  {q:"Which of these correctly lists the stages of the cell cycle in order?",opts:["Mitosis → G1 → S → G2","G1 → S → G2 → Mitosis","S → G1 → G2 → Mitosis","G2 → S → G1 → Mitosis"],ans:1,exp:"The cell cycle proceeds: G1 (growth) → S (DNA synthesis) → G2 (preparation) → Mitosis (division)."},
+  {q:"Which of these correctly lists the stages of the cell cycle in order?",opts:["Mitosis <span aria-hidden="true">→</span> G1 <span aria-hidden="true">→</span> S <span aria-hidden="true">→</span> G2","G1 <span aria-hidden="true">→</span> S <span aria-hidden="true">→</span> G2 <span aria-hidden="true">→</span> Mitosis","S <span aria-hidden="true">→</span> G1 <span aria-hidden="true">→</span> G2 <span aria-hidden="true">→</span> Mitosis","G2 <span aria-hidden="true">→</span> S <span aria-hidden="true">→</span> G1 <span aria-hidden="true">→</span> Mitosis"],ans:1,exp:"The cell cycle proceeds: G1 (growth) <span aria-hidden="true">→</span> S (DNA synthesis) <span aria-hidden="true">→</span> G2 (preparation) <span aria-hidden="true">→</span> Mitosis (division)."},
   {q:"A vesicle is best described as:",opts:["A type of protein","A small membrane-bound transport sac","A segment of DNA","An energy molecule"],ans:1,exp:"Vesicles are small membrane-bound sacs that shuttle materials between organelles or to the cell surface."},
   {q:"What is the role of the cytoskeleton?",opts:["Energy production","Gene expression","Providing shape, support, and movement to the cell","Protein digestion"],ans:2,exp:"The cytoskeleton is a network of protein fibers that gives the cell its shape, supports it, and helps move organelles around."},
   {q:"Bacteria belong to which domain(s) of life?",opts:["Eukarya only","Bacteria (and separately, Archaea)","Fungi","Protista"],ans:1,exp:"Bacteria and Archaea are the two domains of prokaryotic life. They are separate domains, both lacking nuclei."},
@@ -1255,14 +1286,14 @@ function renderQuiz() {
   if(quizLocked[quizIdx]) {
     const correct = quizAnswers[quizIdx] === d.ans;
     html += `<div class="quiz-feedback show ${correct?'correct':'incorrect'}">
-      ${correct ? '✓ Correct!' : '✗ Incorrect.'} ${d.exp}</div>`;
+      ${correct ? '<span aria-hidden="true">✓</span> Correct!' : '<span aria-hidden="true">✗</span> Incorrect.'} ${d.exp}</div>`;
   }
   html += `</div>`;
   c.innerHTML = html;
   document.getElementById('quizCounter').textContent = `Question ${quizIdx+1} of ${quizData.length}`;
   document.getElementById('quizProgressBar').style.width = ((quizIdx+1)/quizData.length*100)+'%';
   document.getElementById('quizPrev').style.visibility = quizIdx===0?'hidden':'visible';
-  document.getElementById('quizNext').textContent = quizIdx===quizData.length-1?'See Score':'Next →';
+  document.getElementById('quizNext').textContent = quizIdx===quizData.length-1?'See Score':'Next <span aria-hidden="true">→</span>';
   document.getElementById('quizNav').style.display = '';
   document.getElementById('quizScoreCard').style.display = 'none';
 }
@@ -1552,7 +1583,7 @@ function gradeSA(idx) {
     <div class="sa-progress-bar"><div class="sa-progress-fill" style="width:${pct}%;background:${color}"></div></div>
     <div class="sa-concepts">`;
   results.forEach(r => {
-    html += `<span class="sa-tag ${r.hit?'hit':'miss'}">${r.hit?'✓':'✗'} ${r.name}</span>`;
+    html += `<span class="sa-tag ${r.hit?'hit':'miss'}">${r.hit?'<span aria-hidden="true">✓</span>':'<span aria-hidden="true">✗</span>'} ${r.name}</span>`;
   });
   html += `</div>
     <button class="sa-model-toggle" onclick="toggleModel(${idx})">Show Model Answer</button>
